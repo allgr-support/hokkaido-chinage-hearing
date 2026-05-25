@@ -506,7 +506,24 @@
               </div></div>
               <div class="field span-2"><label>課題の補足</label><textarea name="currentIssue" placeholder="選択肢にない事情、具体的な数値、現場の状況など"></textarea></div>
               <div class="field span-2"><label>直面している課題の文章案</label><div class="btn-row" style="margin:0 0 8px"><button class="btn secondary small" type="button" id="issueDraftBtn">AI文章案を生成</button></div><textarea name="issueDraft" placeholder="課題を2つ以上選ぶと、ここに申請書向けの文章案を生成できます。"></textarea></div>
-              <div class="field span-2"><label>実施する取組</label><textarea name="projectAction" placeholder="例：リーフレット・POP制作、サイネージ導入、市場調査、Web/予約/顧客管理システム、業務効率化ツールなど。ツール名や商材名だけでもOKです。"></textarea></div>
+              <div class="field span-2"><label>取組カテゴリ<span class="hint">複数選択可。カテゴリに応じて文章の具体性を変えます。</span></label><div class="checks">
+                <label><input type="checkbox" name="actionCategories" value="販促物制作・情報発信">販促物制作・情報発信</label>
+                <label><input type="checkbox" name="actionCategories" value="市場調査・ニーズ把握">市場調査・ニーズ把握</label>
+                <label><input type="checkbox" name="actionCategories" value="Web・予約・顧客管理">Web・予約・顧客管理</label>
+                <label><input type="checkbox" name="actionCategories" value="業務効率化ツール・システム">業務効率化ツール・システム</label>
+                <label><input type="checkbox" name="actionCategories" value="高付加価値商品・サービス開発">高付加価値商品・サービス開発</label>
+              </div></div>
+              <div class="field span-2"><label>導入・制作するもの</label><textarea name="projectAction" placeholder="例：リーフレット・POP制作、屋外サイネージ、市場調査、予約システム、顧客管理、POS、業務管理ツールなど。ツール名や商材名だけでもOKです。"></textarea></div>
+              <div class="field span-2"><label>現在の運用・困りごと</label><textarea name="currentOperation" placeholder="例：電話予約と紙台帳で管理している、店頭説明が属人的、既存客頼みで新規集客が弱い、会計後の売上分析ができていない等"></textarea></div>
+              <div class="field span-2"><label>導入後の使い方</label><textarea name="futureOperation" placeholder="例：顧客属性別に再来店案内を送る、店頭サイネージで新メニューを訴求する、予約・注文・顧客情報を一元管理する等"></textarea></div>
+              <div class="field span-2"><label>改善される業務<span class="hint">複数選択可。現場で何が変わるかを明確にします。</span></label><div class="checks">
+                <label><input type="checkbox" name="improvedOperations" value="予約・受付対応">予約・受付対応</label>
+                <label><input type="checkbox" name="improvedOperations" value="注文・会計・売上管理">注文・会計・売上管理</label>
+                <label><input type="checkbox" name="improvedOperations" value="販促・情報発信">販促・情報発信</label>
+                <label><input type="checkbox" name="improvedOperations" value="顧客フォロー・再来店促進">顧客フォロー・再来店促進</label>
+                <label><input type="checkbox" name="improvedOperations" value="在庫・原価・ロス管理">在庫・原価・ロス管理</label>
+                <label><input type="checkbox" name="improvedOperations" value="教育・作業標準化">教育・作業標準化</label>
+              </div></div>
               <div class="field span-2"><label>生産性向上・高付加価値化の効果<span class="hint">複数選択可。取組の効果説明に反映します。</span></label><div class="checks">
                 <label><input type="checkbox" name="effectChoices" value="作業時間の短縮により、同じ人員で対応できる業務量を増やす">作業時間短縮</label>
                 <label><input type="checkbox" name="effectChoices" value="省人化・自動化により、従業員の負担軽減と業務効率化を図る">省人化・自動化</label>
@@ -694,6 +711,8 @@
       data.wageChecks = getChecked("wageChecks");
       data.wagePolicyChoices = getChecked("wagePolicyChoices");
       data.issueChoices = getChecked("issueChoices");
+      data.actionCategories = getChecked("actionCategories");
+      data.improvedOperations = getChecked("improvedOperations");
       data.effectChoices = getChecked("effectChoices");
       data.docs = collectDocs();
       data.expenses = collectExpenses();
@@ -706,13 +725,15 @@
       form.reset();
       currentId = data.id || makeId();
       Object.entries(data).forEach(([key, value]) => {
-        if (["wageChecks", "wagePolicyChoices", "issueChoices", "effectChoices", "docs", "expenses"].includes(key)) return;
+        if (["wageChecks", "wagePolicyChoices", "issueChoices", "actionCategories", "improvedOperations", "effectChoices", "docs", "expenses"].includes(key)) return;
         const field = form.elements[key];
         if (field) field.value = value ?? "";
       });
       setChecked("wageChecks", data.wageChecks || []);
       setChecked("wagePolicyChoices", data.wagePolicyChoices || []);
       setChecked("issueChoices", data.issueChoices || []);
+      setChecked("actionCategories", data.actionCategories || []);
+      setChecked("improvedOperations", data.improvedOperations || []);
       setChecked("effectChoices", data.effectChoices || []);
       fillDocs(Array.isArray(data.docs) ? data.docs : []);
       expenseBody.innerHTML = "";
@@ -938,6 +959,11 @@
           ["事業実施期間 開始日", data.startDate],
           ["事業実施期間 完了日", data.endDate],
           ["直面している課題", issueText],
+          ["取組カテゴリ", (data.actionCategories || []).join("、")],
+          ["導入・制作するもの", data.projectAction],
+          ["現在の運用・困りごと", data.currentOperation],
+          ["導入後の使い方", data.futureOperation],
+          ["改善される業務", (data.improvedOperations || []).join("、")],
           ["取組みと効果", effectText],
           ["スケジュール", data.schedule]
         ]],
@@ -1035,15 +1061,36 @@
     function buildEffectText(data) {
       const items = data.effectChoices || [];
       const action = (data.projectAction || "本補助事業の取組").trim();
+      const categories = data.actionCategories || [];
+      const current = (data.currentOperation || "").trim();
+      const future = (data.futureOperation || "").trim();
+      const operations = data.improvedOperations || [];
       const supplement = (data.expectedEffect || "").trim();
       const effects = items.length
         ? items.map(text => text.replace(/。$/,"")).join("、")
         : "業務効率化、販路拡大、付加価値向上";
+      const categoryText = buildCategoryEffectText(categories);
+      const operationText = operations.length
+        ? `特に、${operations.join("、")}に関する業務を見直し、現場での確認・対応・集計にかかる時間を減らす。`
+        : "";
       const policy = data.wagePolicyChoices && data.wagePolicyChoices.length
         ? data.wagePolicyChoices.map(text => text.replace(/。$/,"")).join("、")
         : "継続的な賃金改善";
+      const currentText = current ? `現在は、${current.replace(/。$/,"")}という運用であり、対応の属人化や機会損失が生じやすい。` : "";
+      const futureText = future ? `導入後は、${future.replace(/。$/,"")}ことで、取組を日常業務に定着させる。` : "";
       const detail = supplement ? `また、${supplement.replace(/。$/,"")}。` : "";
-      return `上記課題に対応するため、${action}を実施する。本取組により、${effects}を図る。${detail}その結果、同じ人員でもより高い売上・利益を確保できる体制を整え、補助事業で生まれる収益性の改善分を${policy}に充てることで、従業員の処遇改善と人材定着につなげる。`;
+      return `上記課題に対応するため、${action}を実施する。${currentText}${categoryText}${futureText}${operationText}本取組により、${effects}を図る。${detail}その結果、同じ人員でもより高い売上・利益を確保できる体制を整え、補助事業で生まれる収益性の改善分を${policy}に充てることで、従業員の処遇改善と人材定着につなげる。`;
+    }
+
+    function buildCategoryEffectText(categories = []) {
+      const patterns = {
+        "販促物制作・情報発信": "販促物や店頭・Web上の情報発信を整備することで、商品・サービスの魅力を来店前後の顧客に分かりやすく伝え、新規顧客の獲得と既存顧客への追加提案につなげる。",
+        "市場調査・ニーズ把握": "市場調査により顧客ニーズや競合状況を把握し、勘や経験に頼っていた商品・サービス企画を、需要に基づく内容へ見直す。",
+        "Web・予約・顧客管理": "予約、顧客情報、問い合わせ履歴等を一元管理し、顧客属性や利用履歴に応じた案内を行うことで、再来店促進と対応漏れの防止につなげる。",
+        "業務効率化ツール・システム": "システムやツールを活用して手作業・二重入力・確認作業を削減し、従業員が接客、提案、品質向上など付加価値の高い業務に時間を使える体制を整える。",
+        "高付加価値商品・サービス開発": "新たな商品・サービスや提供方法を整備し、価格競争に偏らない付加価値を提供することで、客単価や利益率の向上を図る。"
+      };
+      return categories.map(category => patterns[category]).filter(Boolean).join("");
     }
 
     function buildWagePolicyText(data) {
