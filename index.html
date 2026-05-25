@@ -143,6 +143,17 @@
       margin-bottom: 5px;
       font-size: 13px;
     }
+    .req, .opt {
+      display: inline-block;
+      margin-left: 6px;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-size: 10px;
+      line-height: 1.5;
+      vertical-align: 1px;
+    }
+    .req { background: #fee2e2; color: #991b1b; }
+    .opt { background: #eef2f7; color: #475569; }
     .hint { display: block; color: var(--muted); font-weight: 400; font-size: 12px; margin-top: 2px; }
     input, select, textarea {
       width: 100%;
@@ -189,6 +200,23 @@
     .doc-table td:first-child { min-width: 190px; font-weight: 700; color: var(--navy); }
     .doc-table select { min-width: 104px; }
     .doc-table input[type="date"] { min-width: 130px; }
+    .doc-summary {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .doc-stat {
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 9px 10px;
+      background: #fff;
+      font-weight: 800;
+      color: var(--navy);
+    }
+    .doc-stat span { display: block; color: var(--muted); font-size: 11px; font-weight: 700; }
+    .doc-row-missing td { background: #fff8eb; }
+    .doc-row-done td { background: #f0fdf4; }
     .flow-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-bottom: 12px; }
     .flow-step {
       border: 1px solid var(--line);
@@ -429,19 +457,19 @@
           <div class="panel-head"><h2>1. 基本情報</h2><span class="status" id="caseIdLabel">新規案件</span></div>
           <div class="panel-body">
             <div class="form-grid">
-              <div class="field"><label>案件ステータス</label><select name="status"><option>ヒアリング中</option><option>書類待ち</option><option>申請準備中</option><option>申請済み</option><option>保留</option></select></div>
-              <div class="field"><label>担当者</label><input name="owner" type="text" autocomplete="off"></div>
-              <div class="field"><label>事業者名</label><input name="company" type="text" required autocomplete="organization"></div>
-              <div class="field"><label>事業者名フリガナ</label><input name="companyKana" type="text"></div>
-              <div class="field"><label>申請者の種別</label><select name="entityType" id="entityType"><option>法人</option><option>個人事業主</option></select></div>
+              <div class="field"><label>案件ステータス<span class="opt">任意</span></label><select name="status"><option>ヒアリング中</option><option>書類待ち</option><option>申請準備中</option><option>申請済み</option><option>保留</option></select></div>
+              <div class="field"><label>担当者<span class="opt">任意</span></label><input name="owner" type="text" lang="ja" inputmode="text" autocomplete="off"></div>
+              <div class="field"><label>事業者名<span class="req">必須</span></label><input name="company" type="text" required lang="ja" inputmode="text" autocomplete="organization"></div>
+              <div class="field"><label>事業者名フリガナ<span class="req">必須</span></label><input name="companyKana" type="text" required lang="ja" inputmode="katakana"></div>
+              <div class="field"><label>申請者の種別<span class="req">必須</span></label><select name="entityType" id="entityType"><option>法人</option><option>個人事業主</option></select></div>
               <div class="field conditional" data-entity="法人"><label>法人番号<span class="hint">法人のみ</span></label><input name="corpNumber" type="text" inputmode="numeric" placeholder="13桁"></div>
               <div class="field conditional" data-entity="個人事業主"><label>生年月日<span class="hint">個人事業主のみ</span></label><input name="birthDate" type="date"></div>
-              <div class="field"><label>代表者役職名</label><input name="representativeTitle" type="text" placeholder="例：代表取締役"></div>
-              <div class="field"><label>代表者名</label><div class="mini-grid"><input name="representativeLast" type="text" placeholder="姓"><input name="representativeFirst" type="text" placeholder="名"></div></div>
-              <div class="field"><label>代表者名フリガナ</label><div class="mini-grid"><input name="representativeKanaLast" type="text" placeholder="セイ"><input name="representativeKanaFirst" type="text" placeholder="メイ"></div></div>
+              <div class="field"><label>代表者役職名<span class="opt">任意</span></label><input name="representativeTitle" type="text" lang="ja" inputmode="text" placeholder="例：代表取締役"></div>
+              <div class="field"><label>代表者名<span class="req">必須</span></label><div class="mini-grid"><input name="representativeLast" type="text" required lang="ja" inputmode="text" placeholder="姓"><input name="representativeFirst" type="text" required lang="ja" inputmode="text" placeholder="名"></div></div>
+              <div class="field"><label>代表者名フリガナ<span class="req">必須</span></label><div class="mini-grid"><input name="representativeKanaLast" type="text" required lang="ja" inputmode="katakana" placeholder="セイ"><input name="representativeKanaFirst" type="text" required lang="ja" inputmode="katakana" placeholder="メイ"></div></div>
               <div class="field"><label>業種</label><select name="industry"><option>製造業・建設業・運輸業・その他</option><option>卸売業</option><option>サービス業</option><option>小売業</option></select></div>
               <div class="field"><label>郵便番号</label><input name="postalCode" id="postalCode" type="text" inputmode="numeric" placeholder="0600000"></div>
-              <div class="field"><label>本店/住所</label><input name="address" id="address" type="text" placeholder="北海道..."></div>
+              <div class="field"><label>本店/住所<span class="req">必須</span></label><input name="address" id="address" type="text" required lang="ja" inputmode="text" placeholder="北海道..."></div>
               <div class="field"><label>道内事業所</label><input name="site" type="text" placeholder="設置・実施場所"></div>
               <div class="field conditional" data-entity="法人"><label>資本金等<span class="hint">法人のみ</span></label><input name="capital" type="number" min="0" placeholder="円"></div>
               <div class="field conditional" data-entity="法人"><label>設立年月日<span class="hint">法人のみ</span></label><input name="foundedDate" type="date"></div>
@@ -506,16 +534,16 @@
               </div></div>
               <div class="field span-2"><label>課題の補足</label><textarea name="currentIssue" placeholder="選択肢にない事情、具体的な数値、現場の状況など"></textarea></div>
               <div class="field span-2"><label>直面している課題の文章案</label><div class="btn-row" style="margin:0 0 8px"><button class="btn secondary small" type="button" id="issueDraftBtn">AI文章案を生成</button></div><textarea name="issueDraft" placeholder="課題を2つ以上選ぶと、ここに申請書向けの文章案を生成できます。"></textarea></div>
-              <div class="field span-2"><label>取組カテゴリ<span class="hint">複数選択可。カテゴリに応じて文章の具体性を変えます。</span></label><div class="checks">
+              <div class="field span-2"><label>取組カテゴリ<span class="req">必須</span><span class="hint">複数選択可。カテゴリに応じて文章の具体性を変えます。</span></label><div class="checks">
                 <label><input type="checkbox" name="actionCategories" value="販促物制作・情報発信">販促物制作・情報発信</label>
                 <label><input type="checkbox" name="actionCategories" value="市場調査・ニーズ把握">市場調査・ニーズ把握</label>
                 <label><input type="checkbox" name="actionCategories" value="Web・予約・顧客管理">Web・予約・顧客管理</label>
                 <label><input type="checkbox" name="actionCategories" value="業務効率化ツール・システム">業務効率化ツール・システム</label>
                 <label><input type="checkbox" name="actionCategories" value="高付加価値商品・サービス開発">高付加価値商品・サービス開発</label>
               </div></div>
-              <div class="field span-2"><label>導入・制作するもの</label><textarea name="projectAction" placeholder="例：リーフレット・POP制作、屋外サイネージ、市場調査、予約システム、顧客管理、POS、業務管理ツールなど。ツール名や商材名だけでもOKです。"></textarea></div>
-              <div class="field span-2"><label>現在の運用・困りごと</label><textarea name="currentOperation" placeholder="例：電話予約と紙台帳で管理している、店頭説明が属人的、既存客頼みで新規集客が弱い、会計後の売上分析ができていない等"></textarea></div>
-              <div class="field span-2"><label>導入後の使い方</label><textarea name="futureOperation" placeholder="例：顧客属性別に再来店案内を送る、店頭サイネージで新メニューを訴求する、予約・注文・顧客情報を一元管理する等"></textarea></div>
+              <div class="field span-2"><label>導入・制作するもの<span class="req">必須</span></label><textarea name="projectAction" required lang="ja" inputmode="text" placeholder="例：リーフレット・POP制作、屋外サイネージ、市場調査、予約システム、顧客管理、POS、業務管理ツールなど。ツール名や商材名だけでもOKです。"></textarea></div>
+              <div class="field span-2"><label>現在の運用・困りごと<span class="req">必須</span></label><textarea name="currentOperation" required lang="ja" inputmode="text" placeholder="例：電話予約と紙台帳で管理している、店頭説明が属人的、既存客頼みで新規集客が弱い、会計後の売上分析ができていない等"></textarea></div>
+              <div class="field span-2"><label>導入後の使い方<span class="req">必須</span></label><textarea name="futureOperation" required lang="ja" inputmode="text" placeholder="例：顧客属性別に再来店案内を送る、店頭サイネージで新メニューを訴求する、予約・注文・顧客情報を一元管理する等"></textarea></div>
               <div class="field span-2"><label>改善される業務<span class="hint">複数選択可。現場で何が変わるかを明確にします。</span></label><div class="checks">
                 <label><input type="checkbox" name="improvedOperations" value="予約・受付対応">予約・受付対応</label>
                 <label><input type="checkbox" name="improvedOperations" value="注文・会計・売上管理">注文・会計・売上管理</label>
@@ -532,8 +560,8 @@
                 <label><input type="checkbox" name="effectChoices" value="在庫・原価・廃棄ロスの管理精度を高め、コスト削減につなげる">原価・ロス削減</label>
                 <label><input type="checkbox" name="effectChoices" value="販路拡大や情報発信の強化により、新規顧客の獲得を目指す">販路拡大・新規顧客獲得</label>
               </div></div>
-              <div class="field span-2"><label>効果の補足</label><textarea name="expectedEffect" placeholder="期待する効果、改善する業務、売上・時間・コストなどの見込み"></textarea></div>
-              <div class="field span-2"><label>取組みと効果の文章案</label><div class="btn-row" style="margin:0 0 8px"><button class="btn secondary small" type="button" id="effectDraftBtn">AI文章案を生成</button></div><textarea name="effectDraft" placeholder="取組内容、効果、賃上げ原資とのつながりをまとめた文章案を生成できます。"></textarea></div>
+              <div class="field span-2"><label>効果の補足<span class="opt">任意</span></label><textarea name="expectedEffect" lang="ja" inputmode="text" placeholder="期待する効果、改善する業務、売上・時間・コストなどの見込み"></textarea></div>
+              <div class="field span-2"><label>取組みと効果の文章案<span class="req">必須</span></label><div class="btn-row" style="margin:0 0 8px"><button class="btn secondary small" type="button" id="effectDraftBtn">AI文章案を生成</button></div><textarea name="effectDraft" required lang="ja" inputmode="text" placeholder="取組内容、効果、賃上げ原資とのつながりをまとめた文章案を生成できます。"></textarea></div>
               <div class="field"><label>開始月</label><input name="scheduleStartMonth" id="scheduleStartMonth" type="month"></div>
               <div class="field span-2"><label>スケジュール案</label><div class="btn-row" style="margin:0 0 8px"><button class="btn secondary small" type="button" id="scheduleBtn">スケジュール案を作成</button></div><textarea name="schedule" placeholder="開始月から作成できます。必要に応じて編集してください。"></textarea></div>
             </div>
@@ -568,7 +596,15 @@
             <div class="notice" id="costNotice">税抜金額で入力してください。10万円以上は原則2者以上の見積が必要です。</div>
             <hr>
             <div class="form-grid">
-              <div class="field span-2"><label>書類回収チェック</label><div class="table-wrap">
+              <div class="field span-2"><label>書類回収チェック<span class="hint">社内管理用です。申請メモの貼り付け用画面には出しません。</span></label>
+                <div class="doc-summary" id="docSummary">
+                  <div class="doc-stat"><span>未回収</span>0件</div>
+                  <div class="doc-stat"><span>回収済み</span>0件</div>
+                  <div class="doc-stat"><span>確認中</span>0件</div>
+                  <div class="doc-stat"><span>不要</span>0件</div>
+                </div>
+                <div class="notice bad" id="missingDocNotice">未回収書類はありません。</div>
+                <div class="table-wrap">
                 <table class="doc-table" id="docTable">
                   <thead><tr><th>書類</th><th>状況</th><th>回収日</th><th>メモ</th></tr></thead>
                   <tbody>
@@ -701,6 +737,25 @@
         row.querySelector('[data-doc-field="status"]').value = doc.status || "未回収";
         row.querySelector('[data-doc-field="date"]').value = doc.date || "";
         row.querySelector('[data-doc-field="memo"]').value = doc.memo || "";
+      });
+      updateDocSummary();
+    }
+
+    function updateDocSummary() {
+      if (!docBody) return;
+      const docs = collectDocs();
+      const counts = { "未回収": 0, "回収済み": 0, "確認中": 0, "不要": 0 };
+      docs.forEach(doc => { counts[doc.status] = (counts[doc.status] || 0) + 1; });
+      const labels = ["未回収", "回収済み", "確認中", "不要"];
+      document.getElementById("docSummary").innerHTML = labels.map(label => `<div class="doc-stat"><span>${label}</span>${counts[label] || 0}件</div>`).join("");
+      const missing = docs.filter(doc => doc.status === "未回収" || doc.status === "確認中");
+      document.getElementById("missingDocNotice").textContent = missing.length
+        ? `要対応：${missing.map(doc => doc.name).join("、")}`
+        : "未回収書類はありません。";
+      docBody.querySelectorAll(".doc-row").forEach(row => {
+        const status = row.querySelector('[data-doc-field="status"]').value;
+        row.classList.toggle("doc-row-missing", status === "未回収" || status === "確認中");
+        row.classList.toggle("doc-row-done", status === "回収済み");
       });
     }
 
@@ -974,8 +1029,6 @@
             `単価：${formatYen(e.unitPrice)}`,
             `数量：${e.quantity || ""}`,
             `補助対象経費金額（税抜）：${Number(e.amount || 0).toLocaleString()}円`,
-            `例外汎用品：${e.generalPurpose ? "該当" : "なし"}`,
-            `見積状況：${e.quote || ""}`,
             `備考：${e.note || ""}`
           ].join("\n")]),
           ["補助対象経費合計額", `${subsidySummary.total.toLocaleString()}円`],
@@ -983,10 +1036,6 @@
           ["補助上限額", `${subsidySummary.cap.toLocaleString()}円`],
           ["補助金申請額（千円未満切り捨て）", `${subsidySummary.subsidy.toLocaleString()}円`],
           ["自己負担額（概算）", `${subsidySummary.burden.toLocaleString()}円`]
-        ]],
-        ["添付書類の確認", [
-          ...((data.docs || []).map(doc => [doc.name, `${doc.status}${doc.date ? "\n回収日：" + doc.date : ""}${doc.memo ? "\nメモ：" + doc.memo : ""}`])),
-          ["不足書類・確認事項", data.missingDocs]
         ]]
       ];
       setFlowStep("paste");
@@ -1199,6 +1248,10 @@
     document.getElementById("postalCode").addEventListener("blur", autofillAddress);
     document.getElementById("caseSearch").addEventListener("input", renderCases);
     document.getElementById("exportBtn").addEventListener("click", exportJson);
+    docBody.querySelectorAll("input,select").forEach(field => {
+      field.addEventListener("input", updateDocSummary);
+      field.addEventListener("change", updateDocSummary);
+    });
     ["baseWage", "raisedWage", "frame"].forEach(id => {
       document.getElementById(id).addEventListener("input", () => {
         calculateWage();
@@ -1206,7 +1259,10 @@
       });
     });
     form.addEventListener("input", scheduleAutoSave);
-    form.addEventListener("change", scheduleAutoSave);
+    form.addEventListener("change", () => {
+      updateDocSummary();
+      scheduleAutoSave();
+    });
 
     const lastId = localStorage.getItem(LAST_KEY);
     if (lastId && localStorage.getItem(STORAGE_PREFIX + lastId)) {
