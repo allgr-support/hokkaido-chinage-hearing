@@ -1,36 +1,1173 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>北海道 賃上げ環境整備補助金 ヒアリングシート</title>
-<style>
-:root{--ink:#1f2933;--muted:#64748b;--line:#d8dee8;--soft:#f5f7fb;--panel:#fff;--navy:#17466f;--blue:#2878b9;--green:#1f8f5f;--amber:#bd6b12;--red:#c2413a}*{box-sizing:border-box}body{margin:0;font-family:"Yu Gothic",Meiryo,system-ui,sans-serif;background:var(--soft);color:var(--ink);font-size:14px;line-height:1.6}header{background:#123f65;color:#fff;padding:22px 24px;border-bottom:4px solid #f1a33c}header>div{max-width:1180px;margin:auto}h1{margin:4px 0;font-size:clamp(22px,3vw,31px)}header p{margin:0;color:#dce9f5}.wrap{max-width:1180px;margin:auto;padding:18px;display:grid;grid-template-columns:240px 1fr;gap:18px}nav,.panel{background:var(--panel);border:1px solid var(--line);border-radius:8px;box-shadow:0 10px 28px rgba(22,42,70,.08)}nav{position:sticky;top:12px;padding:10px}.nav{width:100%;border:0;background:transparent;text-align:left;padding:10px 12px;border-radius:6px;font:inherit;font-weight:700;cursor:pointer}.nav.active,.nav:hover{background:#eaf3fb;color:var(--navy)}.save{border-top:1px solid var(--line);margin-top:10px;padding:12px 4px;color:var(--muted);font-size:12px}.panel{display:none;margin-bottom:18px;overflow:hidden}.panel.active{display:block}.head{padding:14px 18px;background:#f9fbfe;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:10px}.head h2{margin:0;font-size:17px}.body{padding:18px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.span{grid-column:1/-1}label{display:block;font-weight:700;color:var(--navy);margin-bottom:5px}.hint{display:block;color:var(--muted);font-weight:400;font-size:12px}input,select,textarea{width:100%;border:1px solid var(--line);border-radius:6px;padding:9px 10px;font:inherit;background:#fff;color:var(--ink);min-height:40px}textarea{min-height:92px;resize:vertical}.mini{display:grid;grid-template-columns:1fr 1fr;gap:8px}.checks{display:flex;flex-wrap:wrap;gap:8px}.checks label{color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:7px 10px;font-weight:500;margin:0;background:#fff}.checks input,.confirm input{width:auto;min-height:auto;margin-right:4px}.confirm{display:grid;gap:8px}.confirm label{border:1px solid #f4c16f;border-left:5px solid var(--amber);background:#fff8eb;border-radius:6px;padding:9px 11px;color:var(--ink);font-weight:700;margin:0}.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.fact{border:1px solid var(--line);border-radius:8px;padding:12px;background:#fff}.fact strong{display:block;color:var(--navy)}.notice{border-left:4px solid var(--amber);background:#fff8eb;padding:11px 13px;border-radius:6px;margin:12px 0}.notice.bad{border-left-color:var(--red);background:#fff0ef}.status{border-radius:999px;padding:4px 10px;background:#eaf3fb;color:var(--navy);font-size:12px;font-weight:700;white-space:nowrap}.btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}.btn{border:1px solid var(--line);border-radius:6px;padding:9px 14px;font-weight:700;cursor:pointer;background:#fff}.primary{background:var(--navy);color:#fff;border-color:var(--navy)}.small{padding:5px 8px;font-size:12px}.danger{color:var(--red);border-color:#efbbb7}table{width:100%;border-collapse:collapse;min-width:900px}th,td{border:1px solid var(--line);padding:8px;vertical-align:top}th{background:var(--navy);color:#fff;text-align:left}.table{overflow-x:auto}.flow{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}.step{border:1px solid var(--line);border-radius:6px;padding:9px;background:#fff;color:var(--muted);font-weight:700;text-align:center}.step.active{border-color:var(--blue);background:#eaf3fb;color:var(--navy)}.loading{display:none;padding:18px;border:1px solid #b9d9f2;border-radius:8px;background:#eef7ff;color:var(--navy);font-weight:800;text-align:center;margin-bottom:12px}.loading.show{display:block}.draft{background:#fbfcfe;border:1px solid var(--line);border-radius:8px;padding:14px}.item{border:1px solid var(--line);border-radius:8px;background:#fff;margin-bottom:12px;overflow:hidden}.item-head{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#eef5fb;padding:8px 10px;font-weight:700;color:var(--navy)}.item-body{padding:12px;white-space:pre-wrap}.case{border:1px solid var(--line);border-radius:8px;background:#fff;padding:12px;margin-bottom:10px;display:grid;grid-template-columns:1fr auto;gap:10px}.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#17212f;color:#fff;padding:10px 16px;border-radius:999px;opacity:0;transition:.2s;pointer-events:none;z-index:20}.toast.show{opacity:1}[hidden]{display:none!important}@media(max-width:860px){.wrap{grid-template-columns:1fr}nav{position:static}.grid,.facts,.flow{grid-template-columns:1fr}.span{grid-column:auto}.case{grid-template-columns:1fr}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>北海道 賃上げ環境整備補助金2026 ヒアリングシート</title>
+  <style>
+    :root {
+      --ink: #1f2933;
+      --muted: #64748b;
+      --line: #d8dee8;
+      --soft: #f5f7fb;
+      --panel: #ffffff;
+      --navy: #17466f;
+      --blue: #2878b9;
+      --green: #1f8f5f;
+      --amber: #bd6b12;
+      --red: #c2413a;
+      --shadow: 0 10px 28px rgba(22, 42, 70, .08);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Yu Gothic", "Hiragino Kaku Gothic ProN", Meiryo, system-ui, sans-serif;
+      color: var(--ink);
+      background: var(--soft);
+      line-height: 1.65;
+      font-size: 14px;
+    }
+
+    header {
+      background: #123f65;
+      color: #fff;
+      padding: 22px 24px 18px;
+      border-bottom: 4px solid #f1a33c;
+    }
+    .header-inner { max-width: 1180px; margin: 0 auto; }
+    .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .02em; opacity: .9; }
+    h1 { margin: 4px 0 6px; font-size: clamp(22px, 3vw, 32px); line-height: 1.25; letter-spacing: 0; }
+    header p { margin: 0; color: #dce9f5; }
+
+    .app-shell {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 18px 18px 70px;
+      display: grid;
+      grid-template-columns: 250px minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    nav {
+      position: sticky;
+      top: 12px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      padding: 10px;
+    }
+    .nav-btn {
+      width: 100%;
+      border: 0;
+      background: transparent;
+      color: var(--ink);
+      cursor: pointer;
+      text-align: left;
+      padding: 10px 12px;
+      border-radius: 6px;
+      font: inherit;
+      font-weight: 700;
+    }
+    .nav-btn.active, .nav-btn:hover { background: #eaf3fb; color: var(--navy); }
+
+    .save-card {
+      margin-top: 10px;
+      border-top: 1px solid var(--line);
+      padding: 12px 4px 2px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    main { min-width: 0; }
+    .panel {
+      display: none;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+      overflow: hidden;
+    }
+    .panel.active { display: block; }
+    .panel-head {
+      padding: 14px 18px;
+      background: #f9fbfe;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .panel-head h2 { margin: 0; font-size: 17px; letter-spacing: 0; }
+    .panel-body { padding: 18px; }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .fact {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+      background: #fff;
+    }
+    .fact strong { display: block; color: var(--navy); margin-bottom: 3px; }
+    .fact p { margin: 0; color: var(--ink); }
+
+    .notice {
+      border-left: 4px solid var(--amber);
+      background: #fff8eb;
+      padding: 11px 13px;
+      border-radius: 6px;
+      margin: 12px 0;
+    }
+    .notice.good { border-left-color: var(--green); background: #edf9f2; }
+    .notice.bad { border-left-color: var(--red); background: #fff0ef; }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .span-2 { grid-column: 1 / -1; }
+    .field { min-width: 0; }
+    label {
+      display: block;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 5px;
+      font-size: 13px;
+    }
+    .hint { display: block; color: var(--muted); font-weight: 400; font-size: 12px; margin-top: 2px; }
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 9px 10px;
+      font: inherit;
+      background: #fff;
+      color: var(--ink);
+      min-height: 40px;
+    }
+    textarea { resize: vertical; min-height: 92px; }
+    input:focus, select:focus, textarea:focus {
+      outline: 3px solid rgba(40, 120, 185, .15);
+      border-color: var(--blue);
+    }
+
+    .checks { display: flex; flex-wrap: wrap; gap: 8px; }
+    .checks label {
+      color: var(--ink);
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 6px;
+      padding: 7px 10px;
+      font-weight: 500;
+      cursor: pointer;
+      margin: 0;
+    }
+    .checks input { width: auto; min-height: auto; margin-right: 4px; accent-color: var(--blue); }
+    .confirm-list { display: grid; gap: 8px; }
+    .confirm-item {
+      border: 1px solid #f4c16f;
+      background: #fff8eb;
+      border-left: 5px solid var(--amber);
+      border-radius: 6px;
+      padding: 9px 11px;
+      color: var(--ink);
+      margin: 0;
+      font-weight: 700;
+    }
+    .confirm-item input { width: auto; min-height: auto; margin-right: 7px; accent-color: var(--amber); }
+    .conditional[hidden] { display: none !important; }
+    .mini-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+    .doc-table td:first-child { min-width: 190px; font-weight: 700; color: var(--navy); }
+    .doc-table select { min-width: 104px; }
+    .doc-table input[type="date"] { min-width: 130px; }
+    .flow-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-bottom: 12px; }
+    .flow-step {
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 9px 10px;
+      background: #fff;
+      color: var(--muted);
+      font-weight: 700;
+      text-align: center;
+    }
+    .flow-step.active { border-color: var(--blue); background: #eaf3fb; color: var(--navy); }
+    .generating {
+      display: none;
+      padding: 18px;
+      border: 1px solid #b9d9f2;
+      border-radius: 8px;
+      background: #eef7ff;
+      color: var(--navy);
+      font-weight: 800;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+    .generating.show { display: block; }
+
+    table { width: 100%; border-collapse: collapse; }
+    th, td { border: 1px solid var(--line); padding: 8px; vertical-align: top; }
+    th { background: var(--navy); color: #fff; text-align: left; }
+    td input, td select { min-height: 34px; padding: 6px 7px; }
+    .table-wrap { overflow-x: auto; }
+    .expense-table { min-width: 850px; }
+
+    .btn-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    button {
+      font-family: inherit;
+    }
+    .btn {
+      border: 1px solid transparent;
+      border-radius: 6px;
+      padding: 9px 14px;
+      font-weight: 700;
+      cursor: pointer;
+      background: #fff;
+      color: var(--ink);
+    }
+    .btn.primary { background: var(--navy); color: #fff; }
+    .btn.primary:hover { background: var(--blue); }
+    .btn.secondary { border-color: var(--line); }
+    .btn.secondary:hover { background: #edf4fa; }
+    .btn.danger { color: var(--red); border-color: #efbbb7; }
+    .btn.small { padding: 5px 8px; font-size: 12px; }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      padding: 4px 10px;
+      background: #eaf3fb;
+      color: var(--navy);
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .draft {
+      background: #fbfcfe;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      min-height: 180px;
+    }
+    .draft-item {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+    .draft-item-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      background: #eef5fb;
+      padding: 8px 10px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .draft-item-body {
+      padding: 12px;
+      white-space: pre-wrap;
+    }
+    .copy-group {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+    .copy-group-head {
+      background: #f7fafc;
+      padding: 10px 12px;
+      font-weight: 800;
+      color: var(--navy);
+      border-bottom: 1px solid var(--line);
+    }
+    .copy-field {
+      display: grid;
+      grid-template-columns: minmax(150px, 220px) minmax(0, 1fr) auto;
+      gap: 10px;
+      align-items: start;
+      padding: 10px 12px;
+      border-bottom: 1px solid #eef2f7;
+    }
+    .copy-field:last-child { border-bottom: 0; }
+    .copy-label { color: var(--muted); font-size: 12px; font-weight: 800; padding-top: 6px; }
+    .copy-value {
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 8px 10px;
+      white-space: pre-wrap;
+      word-break: break-word;
+      min-height: 38px;
+    }
+
+    .cases-toolbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+    .case-list { display: grid; gap: 10px; }
+    .case-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      padding: 12px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+    }
+    .case-card h3 { margin: 0 0 3px; font-size: 15px; }
+    .case-meta { color: var(--muted); font-size: 12px; }
+    .empty { color: var(--muted); text-align: center; padding: 26px; border: 1px dashed var(--line); border-radius: 8px; }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      transform: translateX(-50%) translateY(8px);
+      background: #17212f;
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: 999px;
+      opacity: 0;
+      transition: .2s ease;
+      pointer-events: none;
+      z-index: 20;
+      font-weight: 700;
+      font-size: 13px;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    @media (max-width: 860px) {
+      .app-shell { grid-template-columns: 1fr; }
+      nav { position: static; }
+      .summary-grid, .form-grid { grid-template-columns: 1fr; }
+      .span-2 { grid-column: auto; }
+      .case-card { grid-template-columns: 1fr; }
+      .copy-field { grid-template-columns: 1fr; }
+    }
+
+    @media print {
+      header, nav, .btn-row, .cases-toolbar { display: none !important; }
+      body { background: #fff; }
+      .app-shell { display: block; max-width: none; padding: 0; }
+      .panel { display: block !important; box-shadow: none; border: 0; page-break-inside: avoid; }
+    }
+  </style>
 </head>
 <body>
-<header><div><div>北海道 中小・小規模企業賃上げ環境整備等支援事業費補助金</div><h1>賃上げ環境整備補助金 ヒアリングシート</h1><p>アンケート回答から、様式第1号に沿った申請メモと貼り付け用文章を作成します。</p></div></header>
-<div class="wrap"><nav><button class="nav active" data-panel="summary">要点まとめ</button><button class="nav" data-panel="basic">1. 企業概要</button><button class="nav" data-panel="wage">2. 申請区分・賃上げ</button><button class="nav" data-panel="plan">3. 事業内容</button><button class="nav" data-panel="cost">4. 経費・書類</button><button class="nav" data-panel="draft">申請メモ</button><button class="nav" data-panel="cases">案件一覧</button><div class="save"><div id="saveStatus">未保存</div><div class="btns"><button class="btn primary small" type="button" id="saveBtn">一時保存</button><button class="btn small" type="button" id="newBtn">新規</button></div></div></nav><main>
-<section class="panel active" id="summary"><div class="head"><h2>まず押さえる要点</h2><span class="status">2026年5月確認</span></div><div class="body"><div class="facts"><div class="fact"><strong>通常枠</strong><p>平均賃金を2025年12月時点より引き上げ。補助率1/2、上限200万円。</p></div><div class="fact"><strong>促進枠</strong><p>平均賃金を4.0%以上引き上げ。補助率3/4、上限300万円。</p></div><div class="fact"><strong>必須要件</strong><p>申請日時点でパートナーシップ構築宣言が掲載済みであること。</p></div><div class="fact"><strong>対象経費</strong><p>機械装置・システム等費、クラウド使用料、広報費、借料、展示会等出展費、開発費、専門家費用、委託費、外注費、運搬費、研修費など。</p></div></div><div class="notice bad">10万円以上は原則2者以上の見積が必要。消費税、振込手数料、単なる入替、補助事業に直接関係しない汎用品などは対象外です。</div></div></section>
-<form id="form">
-<section class="panel" id="basic"><div class="head"><h2>1 企業概要</h2><span class="status" id="caseIdLabel">新規案件</span></div><div class="body"><div class="grid"><div><label>案件ステータス</label><select name="status"><option>ヒアリング中</option><option>書類待ち</option><option>申請準備中</option><option>申請済み</option><option>保留</option></select></div><div><label>内部担当者</label><input name="owner"></div><div><label>法人名又は屋号</label><input name="company" required></div><div><label>事業者名フリガナ</label><input name="companyKana"></div><div><label>申請者の種別</label><select name="entityType" id="entityType"><option>法人</option><option>個人事業主</option></select></div><div class="corp"><label>法人番号</label><input name="corpNumber" inputmode="numeric" placeholder="13桁"></div><div class="solo" hidden><label>生年月日</label><input name="birthDate" type="date"></div><div><label>代表者役職名</label><input name="representativeTitle" placeholder="例：代表取締役"></div><div><label>代表者名</label><div class="mini"><input name="representativeLast" placeholder="姓"><input name="representativeFirst" placeholder="名"></div></div><div><label>代表者名フリガナ</label><div class="mini"><input name="representativeKanaLast" placeholder="セイ"><input name="representativeKanaFirst" placeholder="メイ"></div></div><div><label>郵便番号</label><input name="postalCode" id="postalCode" inputmode="numeric" placeholder="0600000"></div><div><label>所在地</label><input name="address" id="address" placeholder="北海道..."></div><div><label>道内事業所</label><input name="site" placeholder="設置・実施場所"></div><div><label>業種</label><select name="industry"><option>製造業・建設業・運輸業・その他</option><option>卸売業</option><option>サービス業</option><option>小売業</option></select></div><div class="corp"><label>資本金等</label><input name="capital" type="number" min="0" placeholder="円"></div><div class="corp"><label>設立年月日</label><input name="foundedDate" type="date"></div><div><label>常勤役員・専従者数</label><input name="officerCount" type="number" min="0"></div><div><label>常時使用する従業員数</label><input name="employees" type="number" min="0"></div><div><label>担当者役職名</label><input name="contactTitle"></div><div><label>担当者氏名</label><div class="mini"><input name="contactLast" placeholder="姓"><input name="contactFirst" placeholder="名"></div></div><div><label>担当者フリガナ</label><div class="mini"><input name="contactKanaLast" placeholder="セイ"><input name="contactKanaFirst" placeholder="メイ"></div></div><div><label>電話番号（優先1）</label><input name="tel" type="tel"></div><div><label>電話番号（優先2）</label><input name="tel2" type="tel"></div><div><label>メール</label><input name="email" type="email"></div><div><label>営業許可証の提出要否<span class="hint">添付書類確認用。不要なら不要を選択。</span></label><select name="license"><option>不要</option><option>必要</option><option>確認中</option></select></div><div><label>許認可・営業許可の種類</label><input name="licenseDetail" placeholder="例：飲食店営業許可、建設業許可"></div><div class="span"><label>事業者メモ</label><textarea name="basicMemo"></textarea></div></div></div></section>
-<section class="panel" id="wage"><div class="head"><h2>2 申請区分・賃上げ</h2><span class="status" id="frameResult">枠未判定</span></div><div class="body"><div class="grid"><div><label>申請予定枠</label><select name="frame" id="frame"><option value="normal">通常枠</option><option value="boost">促進枠</option></select></div><div><label>パートナーシップ構築宣言</label><select name="partnership"><option>未対応</option><option>登録申請中</option><option>掲載済み</option><option>確認中</option></select></div><div><label>2025年12月の対象従業員数</label><input name="baseWorkers" type="number" min="0"></div><div><label>2025年12月の平均賃金</label><input name="baseWage" id="baseWage" type="number" min="0" placeholder="円"></div><div><label>賃上げ後の平均賃金予定</label><input name="raisedWage" id="raisedWage" type="number" min="0" placeholder="円"></div><div><label>賃上げ予定月</label><input name="wageMonth" type="month"></div><div class="span"><label>賃上げ対象外賃金の確認<span class="hint">対象賃金に含めていないことを順に確認してください。</span></label><div class="confirm"><label><input type="checkbox" name="wageChecks" value="賞与・臨時賃金を含めていない">1. 賞与・臨時賃金を含めていない</label><label><input type="checkbox" name="wageChecks" value="残業手当・休日手当・深夜手当を含めていない">2. 残業手当・休日手当・深夜手当を含めていない</label><label><input type="checkbox" name="wageChecks" value="通勤手当・家族手当・精皆勤手当を含めていない">3. 通勤手当・家族手当・精皆勤手当を含めていない</label><label><input type="checkbox" name="wageChecks" value="役員報酬・事業主本人・専従者給与を含めていない">4. 役員報酬・事業主本人・専従者給与を含めていない</label></div></div><div class="span"><label>賃上げ方針・根拠</label><div class="checks"><label><input type="checkbox" name="wagePolicyChoices" value="基本給を引き上げ、毎月固定的に支給される賃金を増額する">基本給を引き上げる</label><label><input type="checkbox" name="wagePolicyChoices" value="時給単価を引き上げ、対象従業員の所定労働時間に応じた賃上げを行う">時給単価を引き上げる</label><label><input type="checkbox" name="wagePolicyChoices" value="対象従業員全体に共通する手当を見直し、継続的な賃金改善を行う">共通手当を見直す</label><label><input type="checkbox" name="wagePolicyChoices" value="人材定着と採用力向上を目的として賃金改善を行う">定着・採用力向上</label></div></div><div class="span"><label>賃上げ方針の補足</label><textarea name="wagePlan"></textarea></div><div class="span"><label>従業員がいない場合の新規雇用予定</label><textarea name="newHirePlan"></textarea></div></div><div class="notice" id="wageCalc">平均賃金を入力すると賃上げ率を自動計算します。</div></div></section>
-<section class="panel" id="plan"><div class="head"><h2>3 事業内容</h2><span class="status">文章生成は2項目</span></div><div class="body"><div class="grid"><div class="span"><label>事業名称</label><input name="projectTitle" placeholder="例：セルフオーダーシステム導入による店舗運営効率化事業"></div><div><label>開始予定日</label><input name="startDate" type="date"></div><div><label>完了予定日</label><input name="endDate" type="date"></div><div class="span"><label>現状の課題<span class="hint">最低2つ選択してください。</span></label><div class="checks"><label><input type="checkbox" name="issueChoices" value="人手不足により、既存業務の処理能力や接客・生産体制に制約が生じている">人手不足</label><label><input type="checkbox" name="issueChoices" value="原材料費・エネルギー価格等の高騰により、収益性が低下している">原価・エネルギー高騰</label><label><input type="checkbox" name="issueChoices" value="手作業や紙管理が多く、作業時間や確認作業の負担が大きい">手作業・紙管理が多い</label><label><input type="checkbox" name="issueChoices" value="設備やシステムが老朽化し、生産性や品質の安定に課題がある">設備・システム老朽化</label><label><input type="checkbox" name="issueChoices" value="既存の販売方法だけでは新規顧客や売上の拡大が難しい">販路・集客不足</label><label><input type="checkbox" name="issueChoices" value="従業員の教育や技術承継に時間を要し、業務の標準化が進んでいない">教育・標準化不足</label></div></div><div class="span"><label>課題の補足</label><textarea name="currentIssue"></textarea></div><div class="span"><label>直面している課題の文章案</label><div class="btns" style="margin:0 0 8px"><button class="btn small" type="button" id="issueDraftBtn">AI文章案を生成</button></div><textarea name="issueDraft"></textarea></div><div class="span"><label>実施する取組</label><textarea name="projectAction" placeholder="リーフレット・POP制作、サイネージ導入、市場調査、Web/予約/顧客管理システム、業務効率化ツールなど"></textarea></div><div class="span"><label>生産性向上・高付加価値化の効果</label><div class="checks"><label><input type="checkbox" name="effectChoices" value="作業時間の短縮により、同じ人員で対応できる業務量を増やす">作業時間短縮</label><label><input type="checkbox" name="effectChoices" value="省人化・自動化により、従業員の負担軽減と業務効率化を図る">省人化・自動化</label><label><input type="checkbox" name="effectChoices" value="品質の安定化やミス削減により、顧客満足度と収益性を高める">品質安定・ミス削減</label><label><input type="checkbox" name="effectChoices" value="新商品・新サービスの提供により、売上機会と客単価の向上を図る">売上・客単価向上</label><label><input type="checkbox" name="effectChoices" value="在庫・原価・廃棄ロスの管理精度を高め、コスト削減につなげる">原価・ロス削減</label><label><input type="checkbox" name="effectChoices" value="販路拡大や情報発信の強化により、新規顧客の獲得を目指す">販路拡大</label></div></div><div class="span"><label>効果の補足</label><textarea name="expectedEffect"></textarea></div><div class="span"><label>取組みと効果の文章案</label><div class="btns" style="margin:0 0 8px"><button class="btn small" type="button" id="effectDraftBtn">AI文章案を生成</button></div><textarea name="effectDraft"></textarea></div><div><label>開始月</label><input name="scheduleStartMonth" id="scheduleStartMonth" type="month"></div><div class="span"><label>スケジュール案</label><div class="btns" style="margin:0 0 8px"><button class="btn small" type="button" id="scheduleBtn">スケジュール案を作成</button></div><textarea name="schedule"></textarea></div></div></div></section>
-<section class="panel" id="cost"><div class="head"><h2>4 経費・必要書類</h2><span class="status" id="subsidyResult">補助額未計算</span></div><div class="body"><div class="table"><table id="expenseTable"><thead><tr><th>経費区分</th><th>品名・品番等</th><th>単価</th><th>数量</th><th>税抜金額</th><th>例外汎用品</th><th>見積状況</th><th>備考</th><th></th></tr></thead><tbody></tbody></table></div><div class="btns"><button class="btn" type="button" id="addExpenseBtn">経費行を追加</button><button class="btn primary" type="button" id="calcBtn">補助額を計算</button></div><div class="notice" id="costNotice">税抜金額で入力してください。</div><hr><label>書類回収チェック</label><div class="table"><table id="docTable"><thead><tr><th>書類</th><th>状況</th><th>回収日</th><th>メモ</th></tr></thead><tbody></tbody></table></div><div class="span"><label>不足書類・確認事項</label><textarea name="missingDocs"></textarea></div></div></section>
-<section class="panel" id="draft"><div class="head"><h2>申請メモ</h2><span class="status">確認して各項目を貼り付け</span></div><div class="body"><div class="flow"><div class="step active" id="flowInput">1〜4入力</div><div class="step" id="flowConfirm">確認画面</div><div class="step" id="flowPaste">貼り付け用画面</div></div><div class="loading" id="loading">AI生成中... 選択内容から申請書向けの文章を整えています。</div><div class="btns" style="margin-top:0"><button class="btn primary" type="button" id="generateDraftBtn">AI生成・確認画面へ</button></div><div class="draft" id="draftOutput">1〜4を入力後、「AI生成・確認画面へ」を押してください。</div></div></section>
-</form><section class="panel" id="cases"><div class="head"><h2>案件一覧</h2><span class="status" id="caseCount">0件</span></div><div class="body"><input id="caseSearch" type="search" placeholder="事業者名・担当者・ステータスで検索" style="max-width:360px"><div id="caseList" style="margin-top:12px"></div></div></section></main></div><div class="toast" id="toast"></div>
-<script>
-const PREFIX="hokkaido_wage_hearing_",LAST="hokkaido_wage_hearing_last";let currentId=null,timer=null;const form=document.getElementById("form"),panels=[...document.querySelectorAll(".panel")],navs=[...document.querySelectorAll(".nav")],expenseBody=document.querySelector("#expenseTable tbody"),docBody=document.querySelector("#docTable tbody");const expenseTypes=["機械装置・システム等費","クラウド使用料","広報費","借料","展示会等出展費","開発費","専門家費用","委託費","外注費","運搬費","研修費","その他"],docs=["誓約書","見積書・カタログ等","法人事業概況説明書/決算書","履歴事項全部証明書","開業届/本人確認書類","営業許可証","パートナーシップ構築宣言","賃上げ誓約書","2025年12月賃金台帳"];
-function toast(m){const t=document.getElementById("toast");t.textContent=m;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),1800)}function panel(id){panels.forEach(p=>p.classList.toggle("active",p.id===id));navs.forEach(b=>b.classList.toggle("active",b.dataset.panel===id));if(id==="cases")renderCases();if(id==="draft")flow("input");scrollTo({top:0,behavior:"smooth"})}function id(){return"case_"+Date.now().toString(36)+Math.random().toString(36).slice(2,7)}function checked(n){return[...form.querySelectorAll(`input[name="${n}"]:checked`)].map(i=>i.value)}function setChecked(n,v=[]){form.querySelectorAll(`input[name="${n}"]`).forEach(i=>i.checked=v.includes(i.value))}function nameJoin(a,b){return[a,b].filter(Boolean).join(" ")}function esc(v){return String(v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}function attr(v){return esc(v).replace(/`/g,"&#096;")}function yen(v){const n=Number(v||0);return n?`${n.toLocaleString()}円`:""}
-function collectExpenses(){return[...expenseBody.querySelectorAll("tr")].map(r=>{const unit=Number(r.querySelector('[data-f="unit"]').value||0),qty=Number(r.querySelector('[data-f="qty"]').value||0),manual=Number(r.querySelector('[data-f="amount"]').value||0);return{type:r.querySelector('[data-f="type"]').value,item:r.querySelector('[data-f="item"]').value,unit,qty,amount:manual||unit*qty,general:r.querySelector('[data-f="general"]').checked,quote:r.querySelector('[data-f="quote"]').value,note:r.querySelector('[data-f="note"]').value}}).filter(e=>e.item||e.amount||e.note||e.general)}function collectDocs(){return[...docBody.querySelectorAll("tr")].map(r=>({name:r.dataset.name,status:r.querySelector('[data-d="status"]').value,date:r.querySelector('[data-d="date"]').value,memo:r.querySelector('[data-d="memo"]').value}))}function data(){const d=Object.fromEntries(new FormData(form).entries());d.id=currentId||id();d.savedAt=new Date().toISOString();["wageChecks","wagePolicyChoices","issueChoices","effectChoices"].forEach(n=>d[n]=checked(n));d.expenses=collectExpenses();d.docs=collectDocs();d.totalCost=d.expenses.reduce((s,e)=>s+Number(e.amount||0),0);d.company=d.company||"名称未入力";return d}
-function save(explicit=false){const d=data();currentId=d.id;localStorage.setItem(PREFIX+currentId,JSON.stringify(d));localStorage.setItem(LAST,currentId);labels(d);if(explicit)toast("一時保存しました")}function autosave(){clearTimeout(timer);timer=setTimeout(()=>save(false),700)}function labels(d=data()){document.getElementById("saveStatus").textContent=`${d.company||"名称未入力"} / ${d.savedAt?new Date(d.savedAt).toLocaleString("ja-JP"):"未保存"}`;document.getElementById("caseIdLabel").textContent=d.id?"保存対象あり":"新規案件"}function fill(d){form.reset();currentId=d.id||id();Object.entries(d).forEach(([k,v])=>{if(["wageChecks","wagePolicyChoices","issueChoices","effectChoices","expenses","docs"].includes(k))return;const f=form.elements[k];if(f)f.value=v??""});["wageChecks","wagePolicyChoices","issueChoices","effectChoices"].forEach(n=>setChecked(n,d[n]||[]));expenseBody.innerHTML="";(d.expenses&&d.expenses.length?d.expenses:[{}]).forEach(addExpense);fillDocs(d.docs||[]);entity();labels(d);calcWage();calcSubsidy()}function fresh(){currentId=id();form.reset();expenseBody.innerHTML="";addExpense();fillDocs([]);entity();labels({id:currentId,company:"新規案件"});calcWage();calcSubsidy();panel("basic")}
-function addExpense(d={}){const r=document.createElement("tr");r.innerHTML=`<td><select data-f="type">${expenseTypes.map(t=>`<option${t===(d.type||"")?" selected":""}>${t}</option>`).join("")}</select></td><td><input data-f="item" value="${attr(d.item||"")}" placeholder="品名・品番等"></td><td><input data-f="unit" type="number" min="0" value="${d.unit||d.unitPrice||""}"></td><td><input data-f="qty" type="number" min="0" step="0.01" value="${d.qty||d.quantity||""}"></td><td><input data-f="amount" type="number" min="0" value="${d.amount||""}"></td><td><label style="color:var(--ink);font-weight:500"><input data-f="general" type="checkbox" ${d.general||d.generalPurpose?"checked":""}>該当</label></td><td><select data-f="quote">${["未取得","1者見積あり","2者以上見積あり","理由書が必要","対象外の可能性"].map(v=>`<option${v===(d.quote||"")?" selected":""}>${v}</option>`).join("")}</select></td><td><input data-f="note" value="${attr(d.note||"")}"></td><td><button class="btn danger small" type="button">削除</button></td>`;r.querySelector("button").onclick=()=>{r.remove();autosave();calcSubsidy()};r.querySelectorAll("input,select").forEach(f=>f.addEventListener("input",()=>{if(f.dataset.f==="unit"||f.dataset.f==="qty"){const u=Number(r.querySelector('[data-f="unit"]').value||0),q=Number(r.querySelector('[data-f="qty"]').value||0);if(u&&q)r.querySelector('[data-f="amount"]').value=Math.round(u*q)}calcSubsidy();autosave()}));expenseBody.appendChild(r)}function fillDocs(saved=[]){const by=Object.fromEntries(saved.map(d=>[d.name,d]));docBody.innerHTML=docs.map(n=>{const d=by[n]||{};return`<tr data-name="${esc(n)}"><td><b>${esc(n)}</b></td><td><select data-d="status">${["未回収","回収済み","不要","確認中"].map(v=>`<option${v===(d.status||"未回収")?" selected":""}>${v}</option>`).join("")}</select></td><td><input data-d="date" type="date" value="${d.date||""}"></td><td><input data-d="memo" value="${attr(d.memo||"")}"></td></tr>`}).join("");docBody.querySelectorAll("input,select").forEach(f=>f.addEventListener("input",autosave))}
-function calcWage(){const base=Number(baseWage.value||0),raised=Number(raisedWage.value||0);if(!base||!raised){wageCalc.textContent="平均賃金を入力すると賃上げ率を自動計算します。";frameResult.textContent="枠未判定";return}const rate=(raised-base)/base*100,round=Math.round(rate*100)/100,txt=rate>=4?"促進枠水準":rate>0?"通常枠水準":"賃上げ不足";wageCalc.textContent=`賃上げ率は ${round}% です。${txt}です。`;frameResult.textContent=txt}function summary(d){const total=Number(d.totalCost||0),rate=d.frame==="boost"?.75:.5,cap=d.frame==="boost"?3000000:2000000,sub=Math.min(Math.floor(total*rate/1000)*1000,cap);return{total,rate,cap,sub,burden:Math.max(total-sub,0)}}function calcSubsidy(){const s=summary(data());subsidyResult.textContent=`概算 ${s.sub.toLocaleString()}円`;costNotice.textContent=`税抜経費合計 ${s.total.toLocaleString()}円 / 補助率 ${s.rate*100}% / 上限 ${s.cap.toLocaleString()}円 / 概算補助額 ${s.sub.toLocaleString()}円`}
-function issueText(d){if((d.issueChoices||[]).length<2){toast("現状の課題は2つ以上選択してください");return(d.currentIssue||"").trim()}const base=`当社は現在、${d.issueChoices.map(x=>x.replace(/。$/,"")).join("ほか、")}という課題に直面している。`;const sup=d.currentIssue?`特に、${d.currentIssue.replace(/。$/,"")}。`:"";return`${base}${sup}これらの課題により、限られた人員で安定的に売上・利益を確保し、継続的な賃上げを行うための原資を生み出すことが難しい状況にある。`}function effectText(d){const action=(d.projectAction||"本補助事業の取組").trim(),effects=(d.effectChoices&&d.effectChoices.length?d.effectChoices:["業務効率化、販路拡大、付加価値向上"]).map(x=>x.replace(/。$/,"")).join("、"),policy=(d.wagePolicyChoices&&d.wagePolicyChoices.length?d.wagePolicyChoices:["継続的な賃金改善"]).map(x=>x.replace(/。$/,"")).join("、"),sup=d.expectedEffect?`また、${d.expectedEffect.replace(/。$/,"")}。`:"";return`上記課題に対応するため、${action}を実施する。本取組により、${effects}を図る。${sup}その結果、同じ人員でもより高い売上・利益を確保できる体制を整え、補助事業で生まれる収益性の改善分を${policy}に充てることで、従業員の処遇改善と人材定着につなげる。`}function genIssue(){form.elements.issueDraft.value=issueText(data());autosave();toast("直面している課題の文章案を作成しました")}function genEffect(){form.elements.effectDraft.value=effectText(data());autosave();toast("取組みと効果の文章案を作成しました")}function genSchedule(){const start=scheduleStartMonth.value,steps=["見積取得・仕様確認","発注・契約","導入・制作・初期設定","運用開始・従業員への共有","効果確認・実績整理"],months=monthLabels(start,steps.length);form.elements.schedule.value=steps.map((s,i)=>`${months[i]}　${s}`).join("\n");autosave()}function monthLabels(start,n){if(!start)return Array.from({length:n},(_,i)=>`${i+1}か月目`);const[y,m]=start.split("-").map(Number);return Array.from({length:n},(_,i)=>{const d=new Date(y,m-1+i,1);return`${d.getFullYear()}年${d.getMonth()+1}月`})}
-function flow(s){flowInput.classList.toggle("active",s==="input");flowConfirm.classList.toggle("active",s==="confirm"||s==="loading");flowPaste.classList.toggle("active",s==="paste")}function runDraft(){const d=data();if((d.issueChoices||[]).length<2){toast("現状の課題を2つ以上選択してください");panel("plan");return}flow("loading");loading.classList.add("show");draftOutput.textContent="";setTimeout(()=>{if(!form.elements.issueDraft.value)form.elements.issueDraft.value=issueText(data());if(!form.elements.effectDraft.value)form.elements.effectDraft.value=effectText(data());loading.classList.remove("show");renderDraft();toast("貼り付け用メモを作成しました")},650)}function renderDraft(){const d=data(),s=summary(d),rep=nameJoin(d.representativeLast,d.representativeFirst),repKana=nameJoin(d.representativeKanaLast,d.representativeKanaFirst),contact=nameJoin(d.contactLast,d.contactFirst)||d.owner,contactKana=nameJoin(d.contactKanaLast,d.contactKanaFirst),expenses=d.expenses.length?d.expenses.map((e,i)=>`No.${i+1} ${e.type}：${e.item||"-"} / 単価 ${yen(e.unit)} / 数量 ${e.qty||""} / 金額 ${Number(e.amount||0).toLocaleString()}円 / 例外汎用品 ${e.general?"該当":"なし"} / ${e.quote||"-"}`).join("\n"):"未入力",docLines=d.docs.map(x=>`・${x.name}：${x.status}${x.date?" / 回収日 "+x.date:""}${x.memo?" / "+x.memo:""}`).join("\n"),wageRate=d.baseWage&&d.raisedWage?`${Math.round(((Number(d.raisedWage)-Number(d.baseWage))/Number(d.baseWage))*10000)/100}%`:"未計算",policy=[...(d.wagePolicyChoices||[]),d.wagePlan].filter(Boolean).join("\n");const sections=[["1 企業概要",[`事業者名フリガナ：${d.companyKana||""}`,`法人名又は屋号：${d.company||""}`,`代表者役職名：${d.representativeTitle||""}`,`代表者名：${rep}`,`代表者名フリガナ：${repKana}`,`申請者の種別：${d.entityType||""}`,d.entityType==="法人"?`法人番号：${d.corpNumber||""}`:`生年月日：${d.birthDate||""}`,`郵便番号：${d.postalCode||""}`,`所在地：${d.address||""}`,`電話番号（優先1）：${d.tel||""}`,`電話番号（優先2）：${d.tel2||""}`,`担当者役職名：${d.contactTitle||""}`,`担当者氏名：${contact||""}`,`担当者フリガナ：${contactKana||""}`,`メール：${d.email||""}`,d.entityType==="法人"?`資本金等：${yen(d.capital)}`:"",d.entityType==="法人"?`設立年月日：${d.foundedDate||""}`:"",`業種：${d.industry||""}`,`常勤役員・専従者数：${d.officerCount||""}`,`常時使用する従業員数：${d.employees||""}`,`営業許可証の提出要否：${d.license||""}${d.licenseDetail?"（"+d.licenseDetail+"）":""}`].filter(Boolean).join("\n")],["2 申請区分",[`申請予定枠：${d.frame==="boost"?"促進枠":"通常枠"}`,`補助率：${d.frame==="boost"?"3/4以内":"1/2以内"}`,`補助上限：${d.frame==="boost"?"300万円":"200万円"}`,`パートナーシップ構築宣言：${d.partnership||""}`,`2025年12月平均賃金：${yen(d.baseWage)}`,`賃上げ後平均賃金：${yen(d.raisedWage)}`,`賃上げ率：${wageRate}`,`賃上げ予定月：${d.wageMonth||""}`,`賃上げ方針：${policy}`].join("\n")],["3 事業内容とスケジュール - 事業名称",d.projectTitle||""],["3 事業内容とスケジュール - 事業実施期間",`開始日：${d.startDate||""}\n完了日：${d.endDate||""}`],["3 事業内容とスケジュール - 直面している課題",d.issueDraft||issueText(d)],["3 事業内容とスケジュール - 取組みと効果",d.effectDraft||effectText(d)],["3 事業内容とスケジュール - スケジュール",d.schedule||""],["4 補助対象経費及び補助金申請額",[expenses,`①補助対象経費合計額：${s.total.toLocaleString()}円`,`補助率：${s.rate*100}%`,`補助上限：${s.cap.toLocaleString()}円`,`②補助金申請額（千円未満切り捨て）：${s.sub.toLocaleString()}円`,`自己負担額（概算）：${s.burden.toLocaleString()}円`].join("\n")],["添付書類の確認",`${docLines}\n不足・確認事項：${d.missingDocs||""}`]];flow("paste");draftOutput.innerHTML=sections.map(([t,b],i)=>`<div class="item"><div class="item-head"><span>${esc(t)}</span><button class="btn small" type="button" onclick="copyItem(${i})">コピー</button></div><div class="item-body" data-copy="${i}">${esc(b||"未入力")}</div></div>`).join("")}function copyItem(i){const t=document.querySelector(`[data-copy="${i}"]`);if(t){navigator.clipboard.writeText(t.textContent.trim());toast("項目をコピーしました")}}
-function allCases(){const a=[];for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&k.startsWith(PREFIX)){try{a.push(JSON.parse(localStorage.getItem(k)))}catch(e){}}}return a.sort((a,b)=>(b.savedAt||"").localeCompare(a.savedAt||""))}function renderCases(){const q=caseSearch.value.trim().toLowerCase(),list=allCases().filter(d=>`${d.company||""} ${d.owner||""} ${d.status||""} ${d.projectTitle||""}`.toLowerCase().includes(q));caseCount.textContent=`${list.length}件`;caseList.innerHTML=list.length?list.map(d=>`<article class="case"><div><h3>${esc(d.company||"名称未入力")}</h3><div>${esc(d.status||"未設定")} / 担当: ${esc(d.owner||"-")} / 税抜経費: ${Number(d.totalCost||0).toLocaleString()}円</div><div>${esc(d.projectTitle||"事業名未入力")} / 保存: ${d.savedAt?new Date(d.savedAt).toLocaleString("ja-JP"):""}</div></div><div><button class="btn primary small" onclick="openCase('${d.id}')">開く</button> <button class="btn danger small" onclick="delCase('${d.id}')">削除</button></div></article>`).join(""):"<div>保存済み案件はありません。</div>"}function openCase(i){const raw=localStorage.getItem(PREFIX+i);if(raw){fill(JSON.parse(raw));panel("basic");toast("案件を読み込みました")}}function delCase(i){if(confirm("この案件を削除しますか？")){localStorage.removeItem(PREFIX+i);if(currentId===i)fresh();renderCases()}}
-function entity(){const solo=entityType.value==="個人事業主";document.querySelectorAll(".corp").forEach(e=>e.hidden=solo);document.querySelectorAll(".solo").forEach(e=>e.hidden=!solo)}async function zip(){const z=postalCode.value.replace(/\D/g,"");if(z.length!==7)return;try{const r=await fetch(`https://zipcloud.ibsnet.co.jp/api/search?zipcode=${z}`),j=await r.json(),h=j.results&&j.results[0];if(h&&!address.value){address.value=`${h.address1}${h.address2}${h.address3}`;autosave();toast("郵便番号から住所を入力しました")}}catch(e){}}
-navs.forEach(b=>b.onclick=()=>panel(b.dataset.panel));saveBtn.onclick=()=>save(true);newBtn.onclick=fresh;addExpenseBtn.onclick=()=>{addExpense();autosave()};calcBtn.onclick=calcSubsidy;issueDraftBtn.onclick=genIssue;effectDraftBtn.onclick=genEffect;scheduleBtn.onclick=genSchedule;generateDraftBtn.onclick=runDraft;caseSearch.oninput=renderCases;entityType.onchange=entity;postalCode.onblur=zip;["baseWage","raisedWage","frame"].forEach(i=>document.getElementById(i).addEventListener("input",()=>{calcWage();calcSubsidy()}));form.addEventListener("input",autosave);form.addEventListener("change",autosave);const last=localStorage.getItem(LAST);if(last&&localStorage.getItem(PREFIX+last))fill(JSON.parse(localStorage.getItem(PREFIX+last)));else{fresh();panel("summary")}
-</script>
+  <header>
+    <div class="header-inner">
+      <div class="eyebrow">北海道 中小・小規模企業賃上げ環境整備等支援事業費補助金</div>
+      <h1>賃上げ環境整備補助金2026 ヒアリングシート</h1>
+      <p>制度要点の確認、申請前ヒアリング、一時保存、案件一覧管理をこの画面で行えます。</p>
+    </div>
+  </header>
+
+  <div class="app-shell">
+    <nav aria-label="画面切替">
+      <button class="nav-btn active" data-panel="summary">要点まとめ</button>
+      <button class="nav-btn" data-panel="basic">1. 基本情報</button>
+      <button class="nav-btn" data-panel="wage">2. 賃上げ・要件</button>
+      <button class="nav-btn" data-panel="plan">3. 事業計画</button>
+      <button class="nav-btn" data-panel="cost">4. 経費・書類</button>
+      <button class="nav-btn" data-panel="draft">申請メモ</button>
+      <button class="nav-btn" data-panel="cases">案件一覧</button>
+      <div class="save-card">
+        <div id="saveStatus">未保存</div>
+        <div class="btn-row">
+          <button class="btn primary small" type="button" id="saveBtn">一時保存</button>
+          <button class="btn secondary small" type="button" id="newBtn">新規</button>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <section class="panel active" id="summary">
+        <div class="panel-head">
+          <h2>まず押さえる要点</h2>
+          <span class="status">2026年5月21日確認</span>
+        </div>
+        <div class="panel-body">
+          <div class="summary-grid">
+            <div class="fact"><strong>目的</strong><p>道内中小・小規模事業者が、生産性向上・販路拡大・新商品/サービス開発・設備投資等を通じて、持続的な賃上げに踏み出せる環境を整備するための補助金です。</p></div>
+            <div class="fact"><strong>対象者</strong><p>賃上げに取り組む道内の中小・小規模事業者等。みなし大企業、従業員がいない事業者などは原則対象外ですが、新規雇用予定の場合は通常枠で対象になり得ます。</p></div>
+            <div class="fact"><strong>通常枠</strong><p>2025年12月時点と比較し、事業完了時点までに平均賃金を少しでも引き上げる枠。補助率1/2、上限200万円。</p></div>
+            <div class="fact"><strong>促進枠</strong><p>2025年12月時点と比較し、事業完了時点までに平均賃金を4.0%以上引き上げる枠。補助率3/4、上限300万円。</p></div>
+            <div class="fact"><strong>募集期間</strong><p>2026年5月15日から2026年9月30日まで。ただし予算上限に達し次第終了です。</p></div>
+            <div class="fact"><strong>必須要件</strong><p>申請日時点でパートナーシップ構築宣言がポータルサイトに掲載されている必要があります。公表に時間がかかるため先行対応が重要です。</p></div>
+            <div class="fact"><strong>対象経費</strong><p>機械装置・システム等費、クラウド使用料、広報費、借料、展示会等出展費、開発費、専門家費用、委託費、外注費、運搬費、研修費など。</p></div>
+            <div class="fact"><strong>注意点</strong><p>10万円以上の購入等は原則2者以上の見積が必要。消費税、振込手数料、汎用品、単なる入替、申請書作成代行費用などは対象外です。</p></div>
+          </div>
+          <div class="notice">
+            補助金は採択・交付決定後の精算払いです。2026年2月20日以降に発注・契約した経費も対象になり得ますが、補助事業期間内に納品・支払まで完了する必要があります。
+          </div>
+          <div class="notice bad">
+            申請不備で多いものは、相見積不足、見積書と申請内容の品名・金額不一致、税込金額での申請、2025年12月支給分の賃金台帳不足、パートナーシップ構築宣言の未掲載です。
+          </div>
+        </div>
+      </section>
+
+      <form id="hearingForm">
+        <section class="panel" id="basic">
+          <div class="panel-head"><h2>1. 基本情報</h2><span class="status" id="caseIdLabel">新規案件</span></div>
+          <div class="panel-body">
+            <div class="form-grid">
+              <div class="field"><label>案件ステータス</label><select name="status"><option>ヒアリング中</option><option>書類待ち</option><option>申請準備中</option><option>申請済み</option><option>保留</option></select></div>
+              <div class="field"><label>担当者</label><input name="owner" type="text" autocomplete="off"></div>
+              <div class="field"><label>事業者名</label><input name="company" type="text" required autocomplete="organization"></div>
+              <div class="field"><label>事業者名フリガナ</label><input name="companyKana" type="text"></div>
+              <div class="field"><label>申請者の種別</label><select name="entityType" id="entityType"><option>法人</option><option>個人事業主</option></select></div>
+              <div class="field conditional" data-entity="法人"><label>法人番号<span class="hint">法人のみ</span></label><input name="corpNumber" type="text" inputmode="numeric" placeholder="13桁"></div>
+              <div class="field conditional" data-entity="個人事業主"><label>生年月日<span class="hint">個人事業主のみ</span></label><input name="birthDate" type="date"></div>
+              <div class="field"><label>代表者役職名</label><input name="representativeTitle" type="text" placeholder="例：代表取締役"></div>
+              <div class="field"><label>代表者名</label><div class="mini-grid"><input name="representativeLast" type="text" placeholder="姓"><input name="representativeFirst" type="text" placeholder="名"></div></div>
+              <div class="field"><label>代表者名フリガナ</label><div class="mini-grid"><input name="representativeKanaLast" type="text" placeholder="セイ"><input name="representativeKanaFirst" type="text" placeholder="メイ"></div></div>
+              <div class="field"><label>業種</label><select name="industry"><option>製造業・建設業・運輸業・その他</option><option>卸売業</option><option>サービス業</option><option>小売業</option></select></div>
+              <div class="field"><label>郵便番号</label><input name="postalCode" id="postalCode" type="text" inputmode="numeric" placeholder="0600000"></div>
+              <div class="field"><label>本店/住所</label><input name="address" id="address" type="text" placeholder="北海道..."></div>
+              <div class="field"><label>道内事業所</label><input name="site" type="text" placeholder="設置・実施場所"></div>
+              <div class="field conditional" data-entity="法人"><label>資本金等<span class="hint">法人のみ</span></label><input name="capital" type="number" min="0" placeholder="円"></div>
+              <div class="field conditional" data-entity="法人"><label>設立年月日<span class="hint">法人のみ</span></label><input name="foundedDate" type="date"></div>
+              <div class="field"><label>常勤役員・専従者数</label><input name="officerCount" type="number" min="0" placeholder="人"></div>
+              <div class="field"><label>常時使用する従業員数</label><input name="employees" type="number" min="0" placeholder="人"></div>
+              <div class="field"><label>電話</label><input name="tel" type="tel"></div>
+              <div class="field"><label>電話2</label><input name="tel2" type="tel"></div>
+              <div class="field"><label>メール</label><input name="email" type="email"></div>
+              <div class="field"><label>申請担当者役職</label><input name="contactTitle" type="text"></div>
+              <div class="field"><label>申請担当者氏名</label><div class="mini-grid"><input name="contactLast" type="text" placeholder="姓"><input name="contactFirst" type="text" placeholder="名"></div></div>
+              <div class="field"><label>申請担当者フリガナ</label><div class="mini-grid"><input name="contactKanaLast" type="text" placeholder="セイ"><input name="contactKanaFirst" type="text" placeholder="メイ"></div></div>
+              <div class="field"><label>営業許可証の提出要否<span class="hint">様式1の添付書類確認用。不要なら不要を選択。</span></label><select name="license"><option>不要</option><option>必要</option><option>確認中</option></select></div>
+              <div class="field"><label>許認可・営業許可の種類</label><input name="licenseDetail" type="text" placeholder="例：飲食店営業許可、建設業許可"></div>
+              <div class="field span-2"><label>事業者メモ</label><textarea name="basicMemo" placeholder="会社概要、主要商品、顧客層、相談背景など"></textarea></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel" id="wage">
+          <div class="panel-head"><h2>2. 賃上げ・要件確認</h2><span class="status" id="frameResult">枠未判定</span></div>
+          <div class="panel-body">
+            <div class="form-grid">
+              <div class="field"><label>申請予定枠</label><select name="frame" id="frame"><option value="normal">通常枠</option><option value="boost">促進枠</option></select></div>
+              <div class="field"><label>パートナーシップ構築宣言</label><select name="partnership"><option>未対応</option><option>登録申請中</option><option>掲載済み</option><option>対象外の可能性あり</option></select></div>
+              <div class="field"><label>2025年12月の対象従業員数</label><input name="baseWorkers" type="number" min="0"></div>
+              <div class="field"><label>2025年12月の平均賃金</label><input name="baseWage" id="baseWage" type="number" min="0" placeholder="円"></div>
+              <div class="field"><label>賃上げ後の平均賃金予定</label><input name="raisedWage" id="raisedWage" type="number" min="0" placeholder="円"></div>
+              <div class="field"><label>賃上げ予定月</label><input name="wageMonth" type="month"></div>
+              <div class="field span-2"><label>賃上げ対象外賃金の確認<span class="hint">対象賃金に含めていないことを、上から順に確認してください。</span></label><div class="confirm-list">
+                <label class="confirm-item"><input type="checkbox" name="wageChecks" value="賞与・臨時賃金を対象賃金に含めていない">1. 賞与・臨時賃金を対象賃金に含めていない</label>
+                <label class="confirm-item"><input type="checkbox" name="wageChecks" value="残業手当・休日手当・深夜手当を対象賃金に含めていない">2. 残業手当・休日手当・深夜手当を対象賃金に含めていない</label>
+                <label class="confirm-item"><input type="checkbox" name="wageChecks" value="通勤手当・家族手当・精皆勤手当を対象賃金に含めていない">3. 通勤手当・家族手当・精皆勤手当を対象賃金に含めていない</label>
+                <label class="confirm-item"><input type="checkbox" name="wageChecks" value="役員報酬・個人事業主本人・専従者給与を対象賃金に含めていない">4. 役員報酬・個人事業主本人・専従者給与を対象賃金に含めていない</label>
+              </div></div>
+              <div class="field span-2"><label>賃上げ方針・根拠<span class="hint">複数選択可。申請メモに文章化して反映します。</span></label><div class="checks">
+                <label><input type="checkbox" name="wagePolicyChoices" value="基本給を引き上げ、毎月固定的に支給される賃金を増額する">基本給を引き上げる</label>
+                <label><input type="checkbox" name="wagePolicyChoices" value="時給単価を引き上げ、対象従業員の所定労働時間に応じた賃上げを行う">時給単価を引き上げる</label>
+                <label><input type="checkbox" name="wagePolicyChoices" value="対象従業員全体に共通する手当を見直し、継続的な賃金改善を行う">共通手当を見直す</label>
+                <label><input type="checkbox" name="wagePolicyChoices" value="人材定着と採用力向上を目的として、補助事業の効果を賃金改善に還元する">定着・採用力向上のため</label>
+              </div></div>
+              <div class="field span-2"><label>賃上げ方針の補足</label><textarea name="wagePlan" placeholder="対象者、改定時期、具体的な計算根拠など、選択肢だけでは足りない内容"></textarea></div>
+              <div class="field span-2"><label>従業員がいない場合の新規雇用予定</label><textarea name="newHirePlan" placeholder="2025年12月時点で従業員ゼロの場合、新規雇用予定・雇用時期・職務内容を記入"></textarea></div>
+            </div>
+            <div class="notice good" id="wageCalc">平均賃金を入力すると賃上げ率を自動計算します。</div>
+          </div>
+        </section>
+
+        <section class="panel" id="plan">
+          <div class="panel-head"><h2>3. 事業計画</h2><span class="status">申請書ドラフト用</span></div>
+          <div class="panel-body">
+            <div class="form-grid">
+              <div class="field span-2"><label>事業名</label><input name="projectTitle" type="text" placeholder="例：セルフオーダーシステム導入による店舗運営効率化事業"></div>
+              <div class="field"><label>開始予定日</label><input name="startDate" type="date"></div>
+              <div class="field"><label>完了予定日</label><input name="endDate" type="date"></div>
+              <div class="field span-2"><label>現状の課題<span class="hint">最低2つ選択してください。申請書の「直面している課題」欄の文章案に使います。</span></label><div class="checks">
+                <label><input type="checkbox" name="issueChoices" value="人手不足により、既存業務の処理能力や接客・生産体制に制約が生じている">人手不足</label>
+                <label><input type="checkbox" name="issueChoices" value="原材料費・エネルギー価格等の高騰により、収益性が低下している">原価・エネルギー高騰</label>
+                <label><input type="checkbox" name="issueChoices" value="手作業や紙管理が多く、作業時間や確認作業の負担が大きい">手作業・紙管理が多い</label>
+                <label><input type="checkbox" name="issueChoices" value="設備やシステムが老朽化し、生産性や品質の安定に課題がある">設備・システムの老朽化</label>
+                <label><input type="checkbox" name="issueChoices" value="既存の販売方法だけでは新規顧客や売上の拡大が難しい">販路・集客不足</label>
+                <label><input type="checkbox" name="issueChoices" value="従業員の教育や技術承継に時間を要し、業務の標準化が進んでいない">教育・標準化不足</label>
+              </div></div>
+              <div class="field span-2"><label>課題の補足</label><textarea name="currentIssue" placeholder="選択肢にない事情、具体的な数値、現場の状況など"></textarea></div>
+              <div class="field span-2"><label>直面している課題の文章案</label><div class="btn-row" style="margin:0 0 8px"><button class="btn secondary small" type="button" id="issueDraftBtn">AI文章案を生成</button></div><textarea name="issueDraft" placeholder="課題を2つ以上選ぶと、ここに申請書向けの文章案を生成できます。"></textarea></div>
+              <div class="field span-2"><label>実施する取組</label><textarea name="projectAction" placeholder="例：リーフレット・POP制作、サイネージ導入、市場調査、Web/予約/顧客管理システム、業務効率化ツールなど。ツール名や商材名だけでもOKです。"></textarea></div>
+              <div class="field span-2"><label>生産性向上・高付加価値化の効果<span class="hint">複数選択可。取組の効果説明に反映します。</span></label><div class="checks">
+                <label><input type="checkbox" name="effectChoices" value="作業時間の短縮により、同じ人員で対応できる業務量を増やす">作業時間短縮</label>
+                <label><input type="checkbox" name="effectChoices" value="省人化・自動化により、従業員の負担軽減と業務効率化を図る">省人化・自動化</label>
+                <label><input type="checkbox" name="effectChoices" value="品質の安定化やミス削減により、顧客満足度と収益性を高める">品質安定・ミス削減</label>
+                <label><input type="checkbox" name="effectChoices" value="新商品・新サービスの提供により、売上機会と客単価の向上を図る">売上・客単価向上</label>
+                <label><input type="checkbox" name="effectChoices" value="在庫・原価・廃棄ロスの管理精度を高め、コスト削減につなげる">原価・ロス削減</label>
+                <label><input type="checkbox" name="effectChoices" value="販路拡大や情報発信の強化により、新規顧客の獲得を目指す">販路拡大・新規顧客獲得</label>
+              </div></div>
+              <div class="field span-2"><label>効果の補足</label><textarea name="expectedEffect" placeholder="期待する効果、改善する業務、売上・時間・コストなどの見込み"></textarea></div>
+              <div class="field span-2"><label>取組みと効果の文章案</label><div class="btn-row" style="margin:0 0 8px"><button class="btn secondary small" type="button" id="effectDraftBtn">AI文章案を生成</button></div><textarea name="effectDraft" placeholder="取組内容、効果、賃上げ原資とのつながりをまとめた文章案を生成できます。"></textarea></div>
+              <div class="field"><label>開始月</label><input name="scheduleStartMonth" id="scheduleStartMonth" type="month"></div>
+              <div class="field span-2"><label>スケジュール案</label><div class="btn-row" style="margin:0 0 8px"><button class="btn secondary small" type="button" id="scheduleBtn">スケジュール案を作成</button></div><textarea name="schedule" placeholder="開始月から作成できます。必要に応じて編集してください。"></textarea></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel" id="cost">
+          <div class="panel-head"><h2>4. 経費・必要書類</h2><span class="status" id="subsidyResult">補助額未計算</span></div>
+          <div class="panel-body">
+            <div class="table-wrap">
+              <table class="expense-table" id="expenseTable">
+                <thead>
+                  <tr>
+                    <th>経費区分</th>
+                    <th>品名・品番等</th>
+                    <th>単価</th>
+                    <th>数量</th>
+                    <th>税抜金額</th>
+                    <th>例外汎用品</th>
+                    <th>見積状況</th>
+                    <th>備考</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+            <div class="btn-row">
+              <button class="btn secondary" type="button" id="addExpenseBtn">経費行を追加</button>
+              <button class="btn primary" type="button" id="calcBtn">補助額を計算</button>
+            </div>
+            <div class="notice" id="costNotice">税抜金額で入力してください。10万円以上は原則2者以上の見積が必要です。</div>
+            <hr>
+            <div class="form-grid">
+              <div class="field span-2"><label>書類回収チェック</label><div class="table-wrap">
+                <table class="doc-table" id="docTable">
+                  <thead><tr><th>書類</th><th>状況</th><th>回収日</th><th>メモ</th></tr></thead>
+                  <tbody>
+                    <tr class="doc-row" data-doc="誓約書"><td>誓約書</td><td><select data-doc-field="status"><option>未回収</option><option>回収済み</option><option>不要</option></select></td><td><input data-doc-field="date" type="date"></td><td><input data-doc-field="memo" type="text" placeholder="不足・修正点"></td></tr>
+                    <tr class="doc-row" data-doc="見積書・カタログ等"><td>見積書・カタログ等</td><td><select data-doc-field="status"><option>未回収</option><option>回収済み</option><option>不要</option></select></td><td><input data-doc-field="date" type="date"></td><td><input data-doc-field="memo" type="text" placeholder="相見積、型番、税込税抜"></td></tr>
+                    <tr class="doc-row" data-doc="法人事業概況説明書/決算書"><td>法人事業概況説明書/決算書</td><td><select data-doc-field="status"><option>未回収</option><option>回収済み</option><option>不要</option></select></td><td><input data-doc-field="date" type="date"></td><td><input data-doc-field="memo" type="text"></td></tr>
+                    <tr class="doc-row" data-doc="履歴事項全部証明書"><td>履歴事項全部証明書</td><td><select data-doc-field="status"><option>未回収</option><option>回収済み</option><option>不要</option></select></td><td><input data-doc-field="date" type="date"></td><td><input data-doc-field="memo" type="text"></td></tr>
+                    <tr class="doc-row" data-doc="開業届/本人確認書類"><td>開業届/本人確認書類</td><td><select data-doc-field="status"><option>未回収</option><option>回収済み</option><option>不要</option></select></td><td><input data-doc-field="date" type="date"></td><td><input data-doc-field="memo" type="text"></td></tr>
+                    <tr class="doc-row" data-doc="営業許可証"><td>営業許可証</td><td><select data-doc-field="status"><option>未回収</option><option>回収済み</option><option>不要</option><option>確認中</option></select></td><td><input data-doc-field="date" type="date"></td><td><input data-doc-field="memo" type="text" placeholder="飲食店営業許可など"></td></tr>
+                    <tr class="doc-row" data-doc="パートナーシップ構築宣言"><td>パートナーシップ構築宣言</td><td><select data-doc-field="status"><option>未回収</option><option>回収済み</option><option>不要</option></select></td><td><input data-doc-field="date" type="date"></td><td><input data-doc-field="memo" type="text" placeholder="掲載日・申請中など"></td></tr>
+                    <tr class="doc-row" data-doc="賃上げ誓約書"><td>賃上げ誓約書</td><td><select data-doc-field="status"><option>未回収</option><option>回収済み</option><option>不要</option></select></td><td><input data-doc-field="date" type="date"></td><td><input data-doc-field="memo" type="text"></td></tr>
+                    <tr class="doc-row" data-doc="2025年12月賃金台帳"><td>2025年12月賃金台帳</td><td><select data-doc-field="status"><option>未回収</option><option>回収済み</option><option>不要</option></select></td><td><input data-doc-field="date" type="date"></td><td><input data-doc-field="memo" type="text" placeholder="対象外賃金の除外確認"></td></tr>
+                  </tbody>
+                </table>
+              </div></div>
+              <div class="field span-2"><label>不足書類・確認事項</label><textarea name="missingDocs" placeholder="不足書類、相見積の依頼先、許可証の要否、賃金台帳の修正点など"></textarea></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel" id="draft">
+          <div class="panel-head"><h2>申請メモ</h2><span class="status">確認して各項目を貼り付け</span></div>
+          <div class="panel-body">
+            <div class="flow-steps">
+              <div class="flow-step" id="flowInput">1〜4入力</div>
+              <div class="flow-step" id="flowConfirm">確認画面</div>
+              <div class="flow-step" id="flowPaste">貼り付け用画面</div>
+            </div>
+            <div class="generating" id="generatingBox">AI生成中... 選択内容から申請書向けの文章を整えています。</div>
+            <div class="btn-row" style="margin-top:0">
+              <button class="btn primary" type="button" id="generateDraftBtn">AI生成・確認画面へ</button>
+            </div>
+            <div class="draft" id="draftOutput">1〜4を入力後、「AI生成・確認画面へ」を押してください。</div>
+          </div>
+        </section>
+      </form>
+
+      <section class="panel" id="cases">
+        <div class="panel-head"><h2>案件一覧</h2><span class="status" id="caseCount">0件</span></div>
+        <div class="panel-body">
+          <div class="cases-toolbar">
+            <input id="caseSearch" type="search" placeholder="事業者名・担当者・ステータスで検索" style="max-width:360px">
+            <button class="btn secondary" type="button" id="exportBtn">JSON出力</button>
+          </div>
+          <div class="case-list" id="caseList"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const STORAGE_PREFIX = "hokkaido_wage_hearing_";
+    const LAST_KEY = "hokkaido_wage_hearing_last";
+    let currentId = null;
+    let autoSaveTimer = null;
+
+    const form = document.getElementById("hearingForm");
+    const panels = [...document.querySelectorAll(".panel")];
+    const navButtons = [...document.querySelectorAll(".nav-btn")];
+    const expenseBody = document.querySelector("#expenseTable tbody");
+    const docBody = document.querySelector("#docTable tbody");
+
+    const expenseTypes = [
+      "機械装置・システム等費", "クラウド使用料", "広報費", "借料", "展示会等出展費",
+      "開発費", "専門家費用", "委託費", "外注費", "運搬費", "研修費", "その他"
+    ];
+
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 1800);
+    }
+
+    function switchPanel(id) {
+      panels.forEach(panel => panel.classList.toggle("active", panel.id === id));
+      navButtons.forEach(button => button.classList.toggle("active", button.dataset.panel === id));
+      if (id === "cases") renderCases();
+      if (id === "draft") setFlowStep("input");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function makeId() {
+      return "case_" + Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+    }
+
+    function getChecked(name) {
+      return [...form.querySelectorAll(`input[name="${name}"]:checked`)].map(input => input.value);
+    }
+
+    function setChecked(name, values = []) {
+      form.querySelectorAll(`input[name="${name}"]`).forEach(input => {
+        input.checked = values.includes(input.value);
+      });
+    }
+
+    function collectExpenses() {
+      return [...expenseBody.querySelectorAll("tr")].map(row => {
+        const unitPrice = Number(row.querySelector('[data-field="unitPrice"]').value || 0);
+        const quantity = Number(row.querySelector('[data-field="quantity"]').value || 0);
+        const manualAmount = Number(row.querySelector('[data-field="amount"]').value || 0);
+        return {
+          type: row.querySelector('[data-field="type"]').value,
+          item: row.querySelector('[data-field="item"]').value,
+          unitPrice,
+          quantity,
+          amount: manualAmount || unitPrice * quantity,
+          generalPurpose: row.querySelector('[data-field="generalPurpose"]').checked,
+          quote: row.querySelector('[data-field="quote"]').value,
+          note: row.querySelector('[data-field="note"]').value
+        };
+      }).filter(expense => expense.type || expense.item || expense.amount || expense.quote || expense.note || expense.generalPurpose);
+    }
+
+    function collectDocs() {
+      return [...docBody.querySelectorAll(".doc-row")].map(row => ({
+        name: row.dataset.doc,
+        status: row.querySelector('[data-doc-field="status"]').value,
+        date: row.querySelector('[data-doc-field="date"]').value,
+        memo: row.querySelector('[data-doc-field="memo"]').value
+      }));
+    }
+
+    function fillDocs(docs = []) {
+      const byName = Object.fromEntries(docs.map(doc => [doc.name, doc]));
+      docBody.querySelectorAll(".doc-row").forEach(row => {
+        const doc = byName[row.dataset.doc] || {};
+        row.querySelector('[data-doc-field="status"]').value = doc.status || "未回収";
+        row.querySelector('[data-doc-field="date"]').value = doc.date || "";
+        row.querySelector('[data-doc-field="memo"]').value = doc.memo || "";
+      });
+    }
+
+    function collectData() {
+      const data = Object.fromEntries(new FormData(form).entries());
+      data.id = currentId || makeId();
+      data.savedAt = new Date().toISOString();
+      data.wageChecks = getChecked("wageChecks");
+      data.wagePolicyChoices = getChecked("wagePolicyChoices");
+      data.issueChoices = getChecked("issueChoices");
+      data.effectChoices = getChecked("effectChoices");
+      data.docs = collectDocs();
+      data.expenses = collectExpenses();
+      data.totalCost = data.expenses.reduce((sum, expense) => sum + Number(expense.amount || 0), 0);
+      data.company = data.company || "名称未入力";
+      return data;
+    }
+
+    function fillData(data) {
+      form.reset();
+      currentId = data.id || makeId();
+      Object.entries(data).forEach(([key, value]) => {
+        if (["wageChecks", "wagePolicyChoices", "issueChoices", "effectChoices", "docs", "expenses"].includes(key)) return;
+        const field = form.elements[key];
+        if (field) field.value = value ?? "";
+      });
+      setChecked("wageChecks", data.wageChecks || []);
+      setChecked("wagePolicyChoices", data.wagePolicyChoices || []);
+      setChecked("issueChoices", data.issueChoices || []);
+      setChecked("effectChoices", data.effectChoices || []);
+      fillDocs(Array.isArray(data.docs) ? data.docs : []);
+      expenseBody.innerHTML = "";
+      (data.expenses && data.expenses.length ? data.expenses : [{}]).forEach(addExpenseRow);
+      updateEntityFields();
+      updateLabels(data);
+      calculateWage();
+      calculateSubsidy();
+    }
+
+    function saveData(explicit = false) {
+      const data = collectData();
+      currentId = data.id;
+      localStorage.setItem(STORAGE_PREFIX + currentId, JSON.stringify(data));
+      localStorage.setItem(LAST_KEY, currentId);
+      updateLabels(data);
+      if (explicit) showToast("一時保存しました");
+    }
+
+    function loadData(id) {
+      const raw = localStorage.getItem(STORAGE_PREFIX + id);
+      if (!raw) return;
+      fillData(JSON.parse(raw));
+      localStorage.setItem(LAST_KEY, id);
+      switchPanel("basic");
+      showToast("案件を読み込みました");
+    }
+
+    function deleteData(id) {
+      if (!confirm("この案件を削除しますか？")) return;
+      localStorage.removeItem(STORAGE_PREFIX + id);
+      if (currentId === id) newCase();
+      renderCases();
+      showToast("削除しました");
+    }
+
+    function newCase() {
+      currentId = makeId();
+      form.reset();
+      fillDocs([]);
+      expenseBody.innerHTML = "";
+      addExpenseRow();
+      updateEntityFields();
+      updateLabels({ id: currentId, company: "新規案件" });
+      calculateWage();
+      calculateSubsidy();
+      switchPanel("basic");
+    }
+
+    function updateLabels(data = collectData()) {
+      const saved = data.savedAt ? new Date(data.savedAt).toLocaleString("ja-JP") : "未保存";
+      document.getElementById("saveStatus").textContent = `${data.company || "名称未入力"} / ${saved}`;
+      document.getElementById("caseIdLabel").textContent = data.id ? "保存対象あり" : "新規案件";
+    }
+
+    function getAllCases() {
+      const cases = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (!key.startsWith(STORAGE_PREFIX)) continue;
+        try { cases.push(JSON.parse(localStorage.getItem(key))); } catch (e) {}
+      }
+      return cases.sort((a, b) => (b.savedAt || "").localeCompare(a.savedAt || ""));
+    }
+
+    function renderCases() {
+      const query = document.getElementById("caseSearch").value.trim().toLowerCase();
+      const cases = getAllCases().filter(data => {
+        const text = `${data.company || ""} ${data.owner || ""} ${data.status || ""} ${data.projectTitle || ""}`.toLowerCase();
+        return text.includes(query);
+      });
+      document.getElementById("caseCount").textContent = `${cases.length}件`;
+      const list = document.getElementById("caseList");
+      if (!cases.length) {
+        list.innerHTML = '<div class="empty">保存済み案件はありません。</div>';
+        return;
+      }
+      list.innerHTML = cases.map(data => {
+        const saved = data.savedAt ? new Date(data.savedAt).toLocaleString("ja-JP") : "";
+        const total = Number(data.totalCost || 0).toLocaleString();
+        return `
+          <article class="case-card">
+            <div>
+              <h3>${escapeHtml(data.company || "名称未入力")}</h3>
+              <div class="case-meta">${escapeHtml(data.status || "未設定")} / 担当: ${escapeHtml(data.owner || "-")} / 税抜経費: ${total}円</div>
+              <div class="case-meta">${escapeHtml(data.projectTitle || "事業名未入力")} / 保存: ${saved}</div>
+            </div>
+            <div class="btn-row" style="margin:0; justify-content:flex-end">
+              <button class="btn primary small" type="button" onclick="loadData('${data.id}')">開く</button>
+              <button class="btn danger small" type="button" onclick="deleteData('${data.id}')">削除</button>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function addExpenseRow(data = {}) {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td><select data-field="type">${expenseTypes.map(type => `<option${type === (data.type || "") ? " selected" : ""}>${type}</option>`).join("")}</select></td>
+        <td><input data-field="item" type="text" value="${escapeAttr(data.item || "")}" placeholder="品名・サービス名"></td>
+        <td><input data-field="unitPrice" type="number" min="0" value="${data.unitPrice || ""}" placeholder="税抜単価"></td>
+        <td><input data-field="quantity" type="number" min="0" step="0.01" value="${data.quantity || ""}" placeholder="数量"></td>
+        <td><input data-field="amount" type="number" min="0" value="${data.amount || ""}" placeholder="自動/手入力"></td>
+        <td><label style="margin:0;color:var(--ink);font-weight:500"><input data-field="generalPurpose" type="checkbox"${data.generalPurpose ? " checked" : ""} style="width:auto;min-height:auto"> 該当</label></td>
+        <td><select data-field="quote">
+          ${["未取得", "1者見積あり", "2者以上見積あり", "理由書が必要", "対象外の可能性"].map(v => `<option${v === (data.quote || "") ? " selected" : ""}>${v}</option>`).join("")}
+        </select></td>
+        <td><input data-field="note" type="text" value="${escapeAttr(data.note || "")}" placeholder="型番、設置場所、必要書類など"></td>
+        <td><button class="btn danger small" type="button" aria-label="削除">削除</button></td>
+      `;
+      row.querySelector("button").addEventListener("click", () => {
+        row.remove();
+        scheduleAutoSave();
+        calculateSubsidy();
+      });
+      row.querySelectorAll("input,select").forEach(field => {
+        field.addEventListener("input", () => {
+          if (field.dataset.field === "unitPrice" || field.dataset.field === "quantity") {
+            const unitPrice = Number(row.querySelector('[data-field="unitPrice"]').value || 0);
+            const quantity = Number(row.querySelector('[data-field="quantity"]').value || 0);
+            if (unitPrice && quantity) row.querySelector('[data-field="amount"]').value = Math.round(unitPrice * quantity);
+          }
+          calculateSubsidy();
+          scheduleAutoSave();
+        });
+      });
+      expenseBody.appendChild(row);
+    }
+
+    function calculateWage() {
+      const base = Number(document.getElementById("baseWage").value || 0);
+      const raised = Number(document.getElementById("raisedWage").value || 0);
+      const calc = document.getElementById("wageCalc");
+      const frameResult = document.getElementById("frameResult");
+      if (!base || !raised) {
+        calc.textContent = "平均賃金を入力すると賃上げ率を自動計算します。";
+        frameResult.textContent = "枠未判定";
+        return;
+      }
+      const rate = ((raised - base) / base) * 100;
+      const rounded = Math.round(rate * 100) / 100;
+      const frameText = rate >= 4 ? "促進枠水準" : rate > 0 ? "通常枠水準" : "賃上げ不足";
+      calc.textContent = `賃上げ率は ${rounded}% です。${frameText}です。`;
+      frameResult.textContent = frameText;
+    }
+
+    function calculateSubsidy() {
+      const total = collectExpenses().reduce((sum, expense) => sum + Number(expense.amount || 0), 0);
+      const frame = document.getElementById("frame").value;
+      const rate = frame === "boost" ? 0.75 : 0.5;
+      const cap = frame === "boost" ? 3000000 : 2000000;
+      const subsidy = Math.min(Math.floor(total * rate), cap);
+      document.getElementById("subsidyResult").textContent = `概算 ${subsidy.toLocaleString()}円`;
+      document.getElementById("costNotice").textContent = `税抜経費合計 ${total.toLocaleString()}円 / 補助率 ${rate * 100}% / 上限 ${cap.toLocaleString()}円 / 概算補助額 ${subsidy.toLocaleString()}円`;
+    }
+
+    function getSubsidySummary(data) {
+      const total = Number(data.totalCost || 0);
+      const rate = data.frame === "boost" ? 0.75 : 0.5;
+      const cap = data.frame === "boost" ? 3000000 : 2000000;
+      const subsidy = Math.min(Math.floor(total * rate / 1000) * 1000, cap);
+      return { total, rate, cap, subsidy, burden: Math.max(total - subsidy, 0) };
+    }
+
+    function generateDraft() {
+      const data = collectData();
+      const wageRate = data.baseWage && data.raisedWage
+        ? `${Math.round(((Number(data.raisedWage) - Number(data.baseWage)) / Number(data.baseWage)) * 10000) / 100}%`
+        : "未計算";
+      const issueText = data.issueDraft || buildIssueText(data);
+      const effectText = data.effectDraft || buildEffectText(data);
+      const wagePolicyText = buildWagePolicyText(data);
+      const subsidySummary = getSubsidySummary(data);
+      const docLines = (data.docs || []).map(doc => `・${doc.name}：${doc.status}${doc.date ? " / 回収日 " + doc.date : ""}${doc.memo ? " / " + doc.memo : ""}`).join("\n");
+      const repName = joinName(data.representativeLast, data.representativeFirst) || data.representative || "";
+      const repKana = joinName(data.representativeKanaLast, data.representativeKanaFirst) || data.representativeKana || "";
+      const contactName = joinName(data.contactLast, data.contactFirst) || data.contactName || data.owner || "";
+      const contactKana = joinName(data.contactKanaLast, data.contactKanaFirst) || data.contactKana || "";
+      const groups = [
+        ["1 企業概要", [
+          ["事業者名フリガナ", data.companyKana],
+          ["法人名又は屋号", data.company],
+          ["代表者役職名", data.representativeTitle],
+          ["代表者名 姓", data.representativeLast],
+          ["代表者名 名", data.representativeFirst],
+          ["代表者名", repName],
+          ["代表者名フリガナ", repKana],
+          ["申請者の種別", data.entityType],
+          [data.entityType === "法人" ? "法人番号" : "生年月日", data.entityType === "法人" ? data.corpNumber : data.birthDate],
+          ["業種", data.industry],
+          ["郵便番号", data.postalCode],
+          ["所在地", data.address],
+          ["道内事業所", data.site],
+          ["電話番号（優先1）", data.tel],
+          ["電話番号（優先2）", data.tel2],
+          ["担当者役職名", data.contactTitle],
+          ["担当者氏名", contactName],
+          ["担当者フリガナ", contactKana],
+          ["メール", data.email],
+          ["資本金等", data.entityType === "法人" ? formatYen(data.capital) : ""],
+          ["設立年月日", data.entityType === "法人" ? data.foundedDate : ""],
+          ["常勤役員・専従者数", data.officerCount],
+          ["常時使用する従業員数", data.employees],
+          ["営業許可証の提出要否", `${data.license || ""}${data.licenseDetail ? "（" + data.licenseDetail + "）" : ""}`]
+        ]],
+        ["2 申請区分・賃上げ", [
+          ["申請予定枠", data.frame === "boost" ? "促進枠" : "通常枠"],
+          ["補助率", data.frame === "boost" ? "3/4以内" : "1/2以内"],
+          ["補助上限", data.frame === "boost" ? "300万円" : "200万円"],
+          ["パートナーシップ構築宣言", data.partnership],
+          ["2025年12月の対象従業員数", data.baseWorkers],
+          ["2025年12月平均賃金", formatYen(data.baseWage)],
+          ["賃上げ後平均賃金", formatYen(data.raisedWage)],
+          ["賃上げ率", wageRate],
+          ["賃上げ予定月", data.wageMonth],
+          ["賃上げ対象外賃金の確認", (data.wageChecks || []).join("\n")],
+          ["賃上げ方針・根拠", wagePolicyText],
+          ["従業員がいない場合の新規雇用予定", data.newHirePlan]
+        ]],
+        ["3 事業内容とスケジュール", [
+          ["事業名称", data.projectTitle],
+          ["事業実施期間 開始日", data.startDate],
+          ["事業実施期間 完了日", data.endDate],
+          ["直面している課題", issueText],
+          ["取組みと効果", effectText],
+          ["スケジュール", data.schedule]
+        ]],
+        ["4 補助対象経費及び補助金申請額", [
+          ...data.expenses.map((e, i) => [`補助対象経費 No.${i + 1}`, [
+            `経費区分：${e.type || ""}`,
+            `品名・品番等：${e.item || ""}`,
+            `単価：${formatYen(e.unitPrice)}`,
+            `数量：${e.quantity || ""}`,
+            `補助対象経費金額（税抜）：${Number(e.amount || 0).toLocaleString()}円`,
+            `例外汎用品：${e.generalPurpose ? "該当" : "なし"}`,
+            `見積状況：${e.quote || ""}`,
+            `備考：${e.note || ""}`
+          ].join("\n")]),
+          ["補助対象経費合計額", `${subsidySummary.total.toLocaleString()}円`],
+          ["補助率", `${subsidySummary.rate * 100}%`],
+          ["補助上限額", `${subsidySummary.cap.toLocaleString()}円`],
+          ["補助金申請額（千円未満切り捨て）", `${subsidySummary.subsidy.toLocaleString()}円`],
+          ["自己負担額（概算）", `${subsidySummary.burden.toLocaleString()}円`]
+        ]],
+        ["添付書類の確認", [
+          ...((data.docs || []).map(doc => [doc.name, `${doc.status}${doc.date ? "\n回収日：" + doc.date : ""}${doc.memo ? "\nメモ：" + doc.memo : ""}`])),
+          ["不足書類・確認事項", data.missingDocs]
+        ]]
+      ];
+      setFlowStep("paste");
+      let copyIndex = 0;
+      document.getElementById("draftOutput").innerHTML = `
+        <div class="notice good">参考システムと同じく、申請画面の入力項目ごとに1つずつコピーできます。文章欄はこの画面で生成した内容を必要に応じて追記してから貼り付けてください。</div>
+        ${groups.map(([groupTitle, fields]) => `
+          <div class="copy-group">
+            <div class="copy-group-head">${escapeHtml(groupTitle)}</div>
+            ${fields.map(([label, value]) => {
+              const index = copyIndex++;
+              return `
+                <div class="copy-field">
+                  <div class="copy-label">${escapeHtml(label)}</div>
+                  <div class="copy-value" data-copy-index="${index}">${escapeHtml(value || "未入力")}</div>
+                  <button class="btn secondary small" type="button" onclick="copyPlanItem(${index})">コピー</button>
+                </div>
+              `;
+            }).join("")}
+          </div>
+        `).join("")}
+      `;
+    }
+
+    function runDraftFlow() {
+      const firstData = collectData();
+      if ((firstData.issueChoices || []).length < 2) {
+        showToast("現状の課題を2つ以上選択してください");
+        switchPanel("plan");
+        return;
+      }
+      setFlowStep("generating");
+      const box = document.getElementById("generatingBox");
+      box.classList.add("show");
+      document.getElementById("draftOutput").textContent = "";
+      setTimeout(() => {
+        const data = collectData();
+        if (!data.issueDraft) form.elements.issueDraft.value = buildIssueText(data);
+        if (!data.effectDraft) form.elements.effectDraft.value = buildEffectText(collectData());
+        box.classList.remove("show");
+        setFlowStep("confirm");
+        generateDraft();
+        showToast("確認・貼り付け用メモを作成しました");
+      }, 650);
+    }
+
+    function setFlowStep(step) {
+      document.getElementById("flowInput").classList.toggle("active", step === "input");
+      document.getElementById("flowConfirm").classList.toggle("active", step === "confirm" || step === "generating");
+      document.getElementById("flowPaste").classList.toggle("active", step === "paste");
+    }
+
+    function copyPlanItem(index) {
+      const target = document.querySelector(`[data-copy-index="${index}"]`);
+      if (!target) return;
+      navigator.clipboard.writeText(target.textContent.trim());
+      showToast("項目をコピーしました");
+    }
+
+    function buildIssueText(data) {
+      const items = data.issueChoices || [];
+      const supplement = (data.currentIssue || "").trim();
+      if (items.length < 2) {
+        showToast("現状の課題は2つ以上選択してください");
+        return supplement;
+      }
+      const base = `当社は現在、${items.map(text => text.replace(/。$/,"")).join("ほか、")}という課題に直面している。`;
+      const detail = supplement ? `特に、${supplement.replace(/。$/,"")}。` : "";
+      return `${base}${detail}これらの課題により、限られた人員で安定的に売上・利益を確保し、継続的な賃上げを行うための原資を生み出すことが難しい状況にある。`;
+    }
+
+    function buildEffectText(data) {
+      const items = data.effectChoices || [];
+      const action = (data.projectAction || "本補助事業の取組").trim();
+      const supplement = (data.expectedEffect || "").trim();
+      const effects = items.length
+        ? items.map(text => text.replace(/。$/,"")).join("、")
+        : "業務効率化、販路拡大、付加価値向上";
+      const policy = data.wagePolicyChoices && data.wagePolicyChoices.length
+        ? data.wagePolicyChoices.map(text => text.replace(/。$/,"")).join("、")
+        : "継続的な賃金改善";
+      const detail = supplement ? `また、${supplement.replace(/。$/,"")}。` : "";
+      return `上記課題に対応するため、${action}を実施する。本取組により、${effects}を図る。${detail}その結果、同じ人員でもより高い売上・利益を確保できる体制を整え、補助事業で生まれる収益性の改善分を${policy}に充てることで、従業員の処遇改善と人材定着につなげる。`;
+    }
+
+    function buildWagePolicyText(data) {
+      const items = data.wagePolicyChoices || [];
+      const supplement = (data.wagePlan || "").trim();
+      const base = items.length ? items.join("。") + "。" : "";
+      return [base, supplement].filter(Boolean).join("\n");
+    }
+
+    function generateIssueDraft() {
+      const data = collectData();
+      form.elements.issueDraft.value = buildIssueText(data);
+      scheduleAutoSave();
+      showToast("直面している課題の文章案を作成しました");
+    }
+
+    function generateEffectDraft() {
+      const data = collectData();
+      form.elements.effectDraft.value = buildEffectText(data);
+      scheduleAutoSave();
+      showToast("取組みと効果の文章案を作成しました");
+    }
+
+    function generateSchedule() {
+      const start = document.getElementById("scheduleStartMonth").value;
+      const steps = ["見積取得・仕様確認", "発注・契約", "導入・制作・初期設定", "運用開始・従業員への共有", "効果確認・実績整理"];
+      const months = buildMonthLabels(start, steps.length);
+      form.elements.schedule.value = steps.map((step, index) => `${months[index]}　${step}`).join("\n");
+      scheduleAutoSave();
+      showToast("スケジュール案を作成しました");
+    }
+
+    function buildMonthLabels(start, count) {
+      if (!start) return Array.from({ length: count }, (_, index) => `${index + 1}か月目`);
+      const [year, month] = start.split("-").map(Number);
+      return Array.from({ length: count }, (_, index) => {
+        const date = new Date(year, month - 1 + index, 1);
+        return `${date.getFullYear()}年${date.getMonth() + 1}月`;
+      });
+    }
+
+    function scheduleAutoSave() {
+      clearTimeout(autoSaveTimer);
+      autoSaveTimer = setTimeout(() => saveData(false), 700);
+    }
+
+    function exportJson() {
+      const data = JSON.stringify(getAllCases(), null, 2);
+      const blob = new Blob([data], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "hokkaido-wage-hearing-cases.json";
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function escapeHtml(value) {
+      return String(value).replace(/[&<>"']/g, char => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" }[char]));
+    }
+    function escapeAttr(value) {
+      return escapeHtml(value).replace(/`/g, "&#096;");
+    }
+    function formatYen(value) {
+      const n = Number(value || 0);
+      return n ? `${n.toLocaleString()}円` : "";
+    }
+    function joinName(last, first) {
+      return [last, first].filter(Boolean).join(" ");
+    }
+
+    function updateEntityFields() {
+      const entity = document.getElementById("entityType").value;
+      document.querySelectorAll("[data-entity]").forEach(el => {
+        el.hidden = el.dataset.entity !== entity;
+      });
+    }
+
+    async function autofillAddress() {
+      const zip = document.getElementById("postalCode").value.replace(/\D/g, "");
+      if (zip.length !== 7) return;
+      try {
+        const res = await fetch(`https://zipcloud.ibsnet.co.jp/api/search?zipcode=${zip}`);
+        const json = await res.json();
+        const hit = json.results && json.results[0];
+        if (hit && !document.getElementById("address").value) {
+          document.getElementById("address").value = `${hit.address1}${hit.address2}${hit.address3}`;
+          scheduleAutoSave();
+          showToast("郵便番号から住所を入力しました");
+        }
+      } catch (e) {
+        showToast("住所自動入力に失敗しました。手入力してください");
+      }
+    }
+
+    navButtons.forEach(button => button.addEventListener("click", () => switchPanel(button.dataset.panel)));
+    document.getElementById("saveBtn").addEventListener("click", () => saveData(true));
+    document.getElementById("newBtn").addEventListener("click", newCase);
+    document.getElementById("addExpenseBtn").addEventListener("click", () => { addExpenseRow(); scheduleAutoSave(); });
+    document.getElementById("calcBtn").addEventListener("click", calculateSubsidy);
+    document.getElementById("issueDraftBtn").addEventListener("click", generateIssueDraft);
+    document.getElementById("effectDraftBtn").addEventListener("click", generateEffectDraft);
+    document.getElementById("scheduleBtn").addEventListener("click", generateSchedule);
+    document.getElementById("generateDraftBtn").addEventListener("click", runDraftFlow);
+    document.getElementById("entityType").addEventListener("change", updateEntityFields);
+    document.getElementById("postalCode").addEventListener("blur", autofillAddress);
+    document.getElementById("caseSearch").addEventListener("input", renderCases);
+    document.getElementById("exportBtn").addEventListener("click", exportJson);
+    ["baseWage", "raisedWage", "frame"].forEach(id => {
+      document.getElementById(id).addEventListener("input", () => {
+        calculateWage();
+        calculateSubsidy();
+      });
+    });
+    form.addEventListener("input", scheduleAutoSave);
+    form.addEventListener("change", scheduleAutoSave);
+
+    const lastId = localStorage.getItem(LAST_KEY);
+    if (lastId && localStorage.getItem(STORAGE_PREFIX + lastId)) {
+      fillData(JSON.parse(localStorage.getItem(STORAGE_PREFIX + lastId)));
+    } else {
+      newCase();
+      switchPanel("summary");
+    }
+  </script>
 </body>
 </html>
