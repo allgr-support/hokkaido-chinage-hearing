@@ -683,7 +683,8 @@
 
   <div class="btn-row">
     <button class="btn btn-secondary" onclick="switchTab(2)">← 戻る</button>
-    <button class="btn btn-gen" onclick="generateDraft()">✦ 申請書ドラフトを生成する</button>
+    <button id="btn-gen-ai" class="btn btn-gen" onclick="generateDraftAI()">✦ AIで申請書ドラフトを生成</button>
+    <button class="btn btn-secondary" onclick="generateDraft()">簡易生成（AIなし）</button>
   </div>
 </div>
 </div>
@@ -1484,6 +1485,41 @@ function showAdminDetail(id) {
   const detail = document.getElementById('admin-detail');
   detail.textContent = lines.join('\n'); detail.style.display = 'block';
   detail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+// ===== AI 申請書ドラフト生成 (Supabase Edge Function 経由) =====
+async function generateDraftAI() {
+  if (!currentUser) { alert('ログインが必要です。'); return; }
+  const data = collectFormData();
+  if (!data['company-name'] || !data['company-name'].trim()) {
+    alert('会社名を入力してから生成してください。'); return;
+  }
+  switchTab(4);
+  const area = document.getElementById('draft-area');
+  document.getElementById('draft-placeholder').style.display = 'none';
+  document.getElementById('draft-actions').style.display = 'none';
+  area.innerHTML = '<div class="alert" style="padding:24px;text-align:center;color:var(--muted);border:1px dashed var(--border);border-radius:8px;">✦ AIが申請書ドラフトを作成しています…<br><span style="font-size:12px;">（通常30〜60秒ほどかかります。画面を閉じずにお待ちください）</span></div>';
+  const aiBtn = document.getElementById('btn-gen-ai');
+  if (aiBtn) { aiBtn.disabled = true; }
+  try {
+    const { data: res, error } = await db.functions.invoke('smooth-task', { body: { data } });
+    if (error) throw new Error(error.message || '呼び出しに失敗しました');
+    if (res && res.error) throw new Error(res.error);
+    const text = (res && res.draft) ? res.draft : '';
+    if (!text) throw new Error('空の結果が返されました');
+    area.innerHTML =
+      '<div class="alert alert-success" style="margin-bottom:16px;">✅ AIが申請書ドラフトを生成しました。内容を確認・修正のうえ、申請書に転記してください。</div>' +
+      '<div style="white-space:pre-wrap;line-height:1.9;font-size:14px;background:#fff;border:1px solid var(--border);border-radius:8px;padding:20px;">' +
+      escapeHtml(text) + '</div>';
+    document.getElementById('draft-actions').style.display = 'block';
+    showToast('AIドラフトを生成しました');
+  } catch (e) {
+    area.innerHTML = '<div class="alert" style="padding:18px;color:var(--danger);border:1px solid var(--danger);border-radius:8px;">生成に失敗しました：' +
+      escapeHtml(e.message || String(e)) +
+      '<br><br>時間をおいて再度お試しください。繰り返し失敗する場合は管理者にお問い合わせください。</div>';
+  } finally {
+    if (aiBtn) { aiBtn.disabled = false; }
+  }
 }
 
 // ===== TOAST =====
