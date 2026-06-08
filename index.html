@@ -1228,6 +1228,7 @@ function collectFormData() {
     const inp = tr.querySelectorAll('input');
     data._schedRows.push({ month: inp[0]?.value||'', content: inp[1]?.value||'' });
   });
+  data._aiDraft = aiDraftText || '';
   return data;
 }
 
@@ -1271,6 +1272,7 @@ function applyFormData(data) {
     });
   }
   checkEligibility(); calcWage(); calcTotal();
+  renderAiDraft(data._aiDraft || '');
 }
 
 // ===== SAVE / LOAD (Supabase) =====
@@ -1363,6 +1365,7 @@ async function newEntry() {
   document.querySelectorAll('input[id], textarea[id]').forEach(el => { if (el.type==='radio'||el.type==='checkbox'){el.checked=false;return;} el.value=''; });
   document.querySelectorAll('select[id]').forEach(el => el.selectedIndex = 0);
   const tbody = document.getElementById('expense-body'); tbody.innerHTML = ''; expRowCount = 0; addExpenseRow(); calcTotal();
+  renderAiDraft('');
   document.getElementById('save-status').innerHTML = '&#10024; 新規入力モード';
   switchTab(0); showToast('新規入力モードに切り替えました');
 }
@@ -1488,8 +1491,33 @@ function showAdminDetail(id) {
 }
 
 // ===== AI 申請書ドラフト生成 (Supabase Edge Function 経由) =====
+let aiDraftText = '';
+function draftEsc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>'); }
+
+// 保存済み/生成済みのドラフトを画面に反映（空なら未生成状態に戻す）
+function renderAiDraft(text) {
+  aiDraftText = text || '';
+  const area = document.getElementById('draft-area');
+  const ph   = document.getElementById('draft-placeholder');
+  const ac   = document.getElementById('draft-actions');
+  if (!area) return;
+  if (aiDraftText) {
+    area.style.display = 'block';
+    area.innerHTML =
+      '<div class="alert alert-success" style="margin-bottom:16px;">✅ 申請書ドラフト（AI生成）。内容を確認・修正のうえ、申請書に転記してください。</div>' +
+      '<div style="white-space:pre-wrap;line-height:1.9;font-size:14px;background:#fff;border:1px solid var(--border);border-radius:8px;padding:20px;">' +
+      draftEsc(aiDraftText) + '</div>';
+    if (ph) ph.style.display = 'none';
+    if (ac) ac.style.display = 'block';
+  } else {
+    area.innerHTML = '';
+    area.style.display = 'none';
+    if (ph) ph.style.display = '';
+    if (ac) ac.style.display = 'none';
+  }
+}
+
 async function generateDraftAI() {
-  const esc = (s) => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
   if (!currentUser) { alert('ログインが必要です。'); return; }
   const data = collectFormData();
   if (!data['company-name'] || !data['company-name'].trim()) {
@@ -1509,15 +1537,12 @@ async function generateDraftAI() {
     if (res && res.error) throw new Error(res.error);
     const text = (res && res.draft) ? res.draft : '';
     if (!text) throw new Error('空の結果が返されました');
-    area.innerHTML =
-      '<div class="alert alert-success" style="margin-bottom:16px;">✅ AIが申請書ドラフトを生成しました。内容を確認・修正のうえ、申請書に転記してください。</div>' +
-      '<div style="white-space:pre-wrap;line-height:1.9;font-size:14px;background:#fff;border:1px solid var(--border);border-radius:8px;padding:20px;">' +
-      esc(text) + '</div>';
-    document.getElementById('draft-actions').style.display = 'block';
-    showToast('AIドラフトを生成しました');
+    renderAiDraft(text);                 // 画面に反映＋aiDraftTextに保持
+    await saveHearing(false);            // ドラフト込みで自動保存（案件を切り替えても残る）
+    showToast('AIドラフトを生成し、保存しました');
   } catch (e) {
     area.innerHTML = '<div class="alert" style="padding:18px;color:var(--danger);border:1px solid var(--danger);border-radius:8px;">生成に失敗しました：' +
-      esc(e.message || String(e)) +
+      draftEsc(e.message || String(e)) +
       '<br><br>時間をおいて再度お試しください。繰り返し失敗する場合は管理者にお問い合わせください。</div>';
   } finally {
     if (aiBtn) { aiBtn.disabled = false; }
