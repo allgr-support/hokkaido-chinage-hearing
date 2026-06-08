@@ -1489,6 +1489,7 @@ function showAdminDetail(id) {
 
 // ===== AI 申請書ドラフト生成 (Supabase Edge Function 経由) =====
 async function generateDraftAI() {
+  const esc = (s) => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
   if (!currentUser) { alert('ログインが必要です。'); return; }
   const data = collectFormData();
   if (!data['company-name'] || !data['company-name'].trim()) {
@@ -1511,12 +1512,12 @@ async function generateDraftAI() {
     area.innerHTML =
       '<div class="alert alert-success" style="margin-bottom:16px;">✅ AIが申請書ドラフトを生成しました。内容を確認・修正のうえ、申請書に転記してください。</div>' +
       '<div style="white-space:pre-wrap;line-height:1.9;font-size:14px;background:#fff;border:1px solid var(--border);border-radius:8px;padding:20px;">' +
-      escapeHtml(text) + '</div>';
+      esc(text) + '</div>';
     document.getElementById('draft-actions').style.display = 'block';
     showToast('AIドラフトを生成しました');
   } catch (e) {
     area.innerHTML = '<div class="alert" style="padding:18px;color:var(--danger);border:1px solid var(--danger);border-radius:8px;">生成に失敗しました：' +
-      escapeHtml(e.message || String(e)) +
+      esc(e.message || String(e)) +
       '<br><br>時間をおいて再度お試しください。繰り返し失敗する場合は管理者にお問い合わせください。</div>';
   } finally {
     if (aiBtn) { aiBtn.disabled = false; }
