@@ -583,13 +583,13 @@
         <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
           <select id="bundle-select" style="flex:1;min-width:240px;border:1px solid var(--border);border-radius:5px;padding:8px 10px;font-size:13px;font-family:inherit;outline:none;">
             <option value="">パターンを選択…</option>
-            <option value="line_ec">①Line+EC構築（機械装置・システム等費／¥4,000,000）</option>
-            <option value="line">②Line構築単体（機械装置・システム等費／¥3,020,000）</option>
-            <option value="spagen">③SPAGEN 炭酸ディスペンサー（機械装置・システム等費／¥750,000）</option>
-            <option value="chirashi">④チラシ・ポスティング（外注費／¥1,045,000）</option>
-            <option value="leaflet">⑤リーフレット・卓上POP（外注費／¥760,000）</option>
-            <option value="meo">⑤GeoConect MEO対策（外注費／¥250,000）</option>
-            <option value="combo">⑥ディスペンサー+MEO+Line（¥4,020,000）</option>
+            <option value="line_ec">①Line+EC構築（明細31行／¥4,000,000）</option>
+            <option value="line">②Line構築単体（明細21行／¥3,020,000）</option>
+            <option value="spagen">③SPAGEN 炭酸ディスペンサー（¥750,000）</option>
+            <option value="chirashi">④チラシ・ポスティング（明細3行／¥1,045,000）</option>
+            <option value="leaflet">⑤リーフレット・卓上POP（明細4行／¥760,000）</option>
+            <option value="meo">⑤GeoConect MEO対策（明細3行／¥250,000）</option>
+            <option value="combo">⑥ディスペンサー+MEO+Line（明細23行／¥4,020,000）</option>
           </select>
           <button type="button" class="add-row-btn" onclick="applyExpensePattern()" style="white-space:nowrap;">＋ この内容を追加</button>
         </div>
@@ -839,28 +839,100 @@ function addExpenseRow() {
 }
 
 // ===== 商材パターン（北海道申請時条件表より。社内原価は含めない） =====
-const EXPENSE_PATTERNS = {
-  line_ec:  { label:'①Line+EC構築', rows:[
-    {cat:'機械装置・システム等費', name:'LINEシステム開発費（LINE＋EC一式）', price:4000000, qty:1} ] },
-  line:     { label:'②Line構築単体', rows:[
-    {cat:'機械装置・システム等費', name:'LINEシステム開発費（LINE構築単体）', price:3020000, qty:1} ] },
-  spagen:   { label:'③SPAGEN 炭酸ディスペンサー', rows:[
-    {cat:'機械装置・システム等費', name:'炭酸ディスペンサー', price:750000, qty:1} ] },
-  chirashi: { label:'④チラシ・ポスティング', rows:[
-    {cat:'外注費', name:'チラシデザイン費 両面（A4・両面フルカラー）', price:200000, qty:2},
-    {cat:'外注費', name:'チラシ印刷', price:18, qty:15000},
-    {cat:'外注費', name:'ポスティング', price:25, qty:15000} ] },
-  leaflet:  { label:'⑤リーフレット・卓上POP', rows:[
-    {cat:'外注費', name:'リーフレットデザイン（A4・片面フルカラー）', price:300000, qty:1},
-    {cat:'外注費', name:'チラシ印刷', price:20, qty:5000},
-    {cat:'外注費', name:'卓上POPデザイン', price:300000, qty:1},
-    {cat:'外注費', name:'卓上POP印刷', price:3000, qty:20} ] },
-  meo:      { label:'⑤GeoConect MEO対策', rows:[
-    {cat:'外注費', name:'MEO対策（GeoConnect）', price:250000, qty:1} ] },
-  combo:    { label:'⑥ディスペンサー+MEO+Line', rows:[
-    {cat:'機械装置・システム等費', name:'炭酸ディスペンサー', price:750000, qty:1},
-    {cat:'外注費', name:'MEO対策（GeoConnect）', price:250000, qty:1},
-    {cat:'機械装置・システム等費', name:'LINEシステム開発費（LINE構築単体）', price:3020000, qty:1} ] },
+let EXPENSE_PATTERNS = {
+  line_ec: { label:"①Line+EC構築", rows:[
+    {cat:"開発費", name:"要件定義・基本設計", price:35000, qty:4},
+    {cat:"開発費", name:"環境構築・DB設計（マルチ構成基盤）", price:35000, qty:3},
+    {cat:"開発費", name:"LINE連携基盤（Webhook受信・友だち追加/ブロック検知・LIFFログイン認証）", price:35000, qty:6},
+    {cat:"開発費", name:"管理者ログイン・アカウント管理（2段階認証・権限制御）", price:35000, qty:3},
+    {cat:"開発費", name:"ダッシュボード（各種サマリ表示）", price:35000, qty:2},
+    {cat:"開発費", name:"サイト設定・API設定（LINEチャネル/外部APIキー）", price:35000, qty:2},
+    {cat:"開発費", name:"決済基盤（PAY.JP連携・カード登録・3Dセキュア）", price:35000, qty:4},
+    {cat:"開発費", name:"結合テスト・QA", price:35000, qty:5},
+    {cat:"開発費", name:"ディレクション・プロジェクト管理", price:35000, qty:8},
+    {cat:"開発費", name:"顧客管理（友だち一覧・詳細・タグ付与・CSV出力）", price:35000, qty:4},
+    {cat:"開発費", name:"セグメント配信（条件配信・メッセージ作成・配信予約・履歴）", price:35000, qty:5},
+    {cat:"開発費", name:"アンケート機能（設問作成・項目設定・回答収集）", price:35000, qty:4},
+    {cat:"開発費", name:"アンケート分析（集計・グラフ・クロス集計）", price:35000, qty:4},
+    {cat:"開発費", name:"来店ランク機能（来店記録・ランク設定・QR発行型/読み取り型）", price:35000, qty:5},
+    {cat:"開発費", name:"予約機能（受付/履歴/キャンセル管理）", price:35000, qty:10},
+    {cat:"開発費", name:"流入経路分析（計測URL発行・経路集計）", price:35000, qty:3},
+    {cat:"開発費", name:"リンク分析（計測リンク発行・クリック集計）", price:35000, qty:2},
+    {cat:"開発費", name:"商品管理（商品・親商品/バリエーション・カテゴリ・タグ・画像・CSV在庫）", price:35000, qty:5},
+    {cat:"開発費", name:"注文管理（受注一覧・詳細・ステータス・出荷・CSV出力）", price:35000, qty:4},
+    {cat:"開発費", name:"送料設定・EC設定", price:35000, qty:2},
+    {cat:"開発費", name:"クーポン管理（発行・配布URL・利用管理）", price:35000, qty:3},
+    {cat:"開発費", name:"LIFF共通基盤・レイアウト", price:35000, qty:2},
+    {cat:"開発費", name:"アンケート回答画面", price:35000, qty:2},
+    {cat:"開発費", name:"予約画面（一覧/詳細/予約/履歴/キャンセル）", price:35000, qty:8},
+    {cat:"開発費", name:"来店QR（ユーザー読み取り型画面）", price:45000, qty:1},
+    {cat:"開発費", name:"マイページ（プロフィール編集・ランク確認）", price:35000, qty:3},
+    {cat:"開発費", name:"商品一覧・詳細（カテゴリ/タグ/バリエーション検索）", price:35000, qty:3},
+    {cat:"開発費", name:"カート", price:35000, qty:2},
+    {cat:"開発費", name:"注文・購入フロー（決済連携・3Dセキュア）", price:35000, qty:3},
+    {cat:"開発費", name:"注文履歴", price:35000, qty:1},
+    {cat:"開発費", name:"クーポン受取・利用（LIFF）", price:35000, qty:1} ] },
+  line: { label:"②Line構築単体", rows:[
+    {cat:"開発費", name:"要件定義・基本設計", price:35000, qty:4},
+    {cat:"開発費", name:"環境構築・DB設計（マルチ構成基盤）", price:35000, qty:3},
+    {cat:"開発費", name:"LINE連携基盤（Webhook受信・友だち追加/ブロック検知・LIFFログイン認証）", price:35000, qty:6},
+    {cat:"開発費", name:"管理者ログイン・アカウント管理（2段階認証・権限制御）", price:35000, qty:3},
+    {cat:"開発費", name:"ダッシュボード（各種サマリ表示）", price:35000, qty:2},
+    {cat:"開発費", name:"サイト設定・API設定（LINEチャネル/外部APIキー）", price:35000, qty:2},
+    {cat:"開発費", name:"結合テスト・QA", price:35000, qty:5},
+    {cat:"開発費", name:"ディレクション・プロジェクト管理", price:35000, qty:8},
+    {cat:"開発費", name:"顧客管理（友だち一覧・詳細・タグ付与・CSV出力）", price:35000, qty:4},
+    {cat:"開発費", name:"セグメント配信（条件配信・メッセージ作成・配信予約・履歴）", price:35000, qty:5},
+    {cat:"開発費", name:"アンケート機能（設問作成・項目設定・回答収集）", price:35000, qty:4},
+    {cat:"開発費", name:"アンケート分析（集計・グラフ・クロス集計）", price:35000, qty:4},
+    {cat:"開発費", name:"来店ランク機能（来店記録・ランク設定・QR発行型/読み取り型）", price:35000, qty:5},
+    {cat:"開発費", name:"予約機能（受付/履歴/キャンセル管理）", price:35000, qty:10},
+    {cat:"開発費", name:"流入経路分析（計測URL発行・経路集計）", price:35000, qty:3},
+    {cat:"開発費", name:"リンク分析（計測リンク発行・クリック集計）", price:35000, qty:2},
+    {cat:"開発費", name:"LIFF共通基盤・レイアウト", price:35000, qty:2},
+    {cat:"開発費", name:"アンケート回答画面", price:35000, qty:2},
+    {cat:"開発費", name:"予約画面（一覧/詳細/予約/履歴/キャンセル）", price:35000, qty:8},
+    {cat:"開発費", name:"来店QR（ユーザー読み取り型画面）", price:45000, qty:1},
+    {cat:"開発費", name:"マイページ（プロフィール編集・ランク確認）", price:35000, qty:3} ] },
+  spagen: { label:"③SPAGEN（炭酸ディスペンサー）", rows:[
+    {cat:"機械装置・システム等費", name:"炭酸ディスペンサー", price:750000, qty:1} ] },
+  chirashi: { label:"④チラシ・ポスティング", rows:[
+    {cat:"外注費", name:"チラシデザイン費 両面（サイズA4・両面フルカラー）", price:200000, qty:2},
+    {cat:"外注費", name:"チラシ印刷", price:18, qty:15000},
+    {cat:"外注費", name:"ポスティング", price:25, qty:15000} ] },
+  leaflet: { label:"⑤リーフレット・卓上POP", rows:[
+    {cat:"外注費", name:"リーフレットデザイン （サイズA4・片面フルカラー）", price:300000, qty:1},
+    {cat:"外注費", name:"チラシ印刷", price:20, qty:5000},
+    {cat:"外注費", name:"卓上POPデザイン", price:300000, qty:1},
+    {cat:"外注費", name:"卓上POP印刷20部", price:3000, qty:20} ] },
+  meo: { label:"⑤GeoConect（MEO対策）", rows:[
+    {cat:"外注費", name:"ビジネス説明文・サービス・メニュー設定・商品設定・オーナー権限取得サポート", price:25000, qty:3},
+    {cat:"外注費", name:"Map連携(bingMap,AppleMap.foursquare)", price:25000, qty:1},
+    {cat:"外注費", name:"インサイト管理ツール　構築", price:25000, qty:6} ] },
+  combo: { label:"⑥ディスペンサー+Meo+Line", rows:[
+    {cat:"機械装置・システム等費", name:"炭酸ディスペンサー", price:750000, qty:1},
+    {cat:"外注費", name:"Googleマップ構成費用※外国語対応（GEOCOnnect）ターゲットリサーチ設定", price:250000, qty:1},
+    {cat:"開発費", name:"要件定義・基本設計", price:35000, qty:4},
+    {cat:"開発費", name:"環境構築・DB設計（マルチ構成基盤）", price:35000, qty:3},
+    {cat:"開発費", name:"LINE連携基盤（Webhook受信・友だち追加/ブロック検知・LIFFログイン認証）", price:35000, qty:6},
+    {cat:"開発費", name:"管理者ログイン・アカウント管理（2段階認証・権限制御）", price:35000, qty:3},
+    {cat:"開発費", name:"ダッシュボード（各種サマリ表示）", price:35000, qty:2},
+    {cat:"開発費", name:"サイト設定・API設定（LINEチャネル/外部APIキー）", price:35000, qty:2},
+    {cat:"開発費", name:"結合テスト・QA", price:35000, qty:5},
+    {cat:"開発費", name:"ディレクション・プロジェクト管理", price:35000, qty:8},
+    {cat:"開発費", name:"顧客管理（友だち一覧・詳細・タグ付与・CSV出力）", price:35000, qty:4},
+    {cat:"開発費", name:"セグメント配信（条件配信・メッセージ作成・配信予約・履歴）", price:35000, qty:5},
+    {cat:"開発費", name:"アンケート機能（設問作成・項目設定・回答収集）", price:35000, qty:4},
+    {cat:"開発費", name:"アンケート分析（集計・グラフ・クロス集計）", price:35000, qty:4},
+    {cat:"開発費", name:"来店ランク機能（来店記録・ランク設定・QR発行型/読み取り型）", price:35000, qty:5},
+    {cat:"開発費", name:"予約機能（受付/履歴/キャンセル管理）", price:35000, qty:10},
+    {cat:"開発費", name:"流入経路分析（計測URL発行・経路集計）", price:35000, qty:3},
+    {cat:"開発費", name:"リンク分析（計測リンク発行・クリック集計）", price:35000, qty:2},
+    {cat:"開発費", name:"LIFF共通基盤・レイアウト", price:35000, qty:2},
+    {cat:"開発費", name:"アンケート回答画面", price:35000, qty:2},
+    {cat:"開発費", name:"予約画面（一覧/詳細/予約/履歴/キャンセル）", price:35000, qty:8},
+    {cat:"開発費", name:"来店QR（ユーザー読み取り型画面）", price:45000, qty:1},
+    {cat:"開発費", name:"マイページ（プロフィール編集・ランク確認）", price:35000, qty:3} ] }
 };
 
 function applyExpensePattern() {
