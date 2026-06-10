@@ -577,6 +577,25 @@
       <div class="alert alert-info" style="margin-bottom:12px;">
         ※金額はすべて<strong>税抜き</strong>で入力してください。10万円以上の品目は相見積もり（2者以上）が必要です。
       </div>
+
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px;margin-bottom:14px;">
+        <div style="font-size:13px;font-weight:600;margin-bottom:6px;">&#9889; 商材パターンから一括入力</div>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+          <select id="bundle-select" style="flex:1;min-width:240px;border:1px solid var(--border);border-radius:5px;padding:8px 10px;font-size:13px;font-family:inherit;outline:none;">
+            <option value="">パターンを選択…</option>
+            <option value="line_ec">①Line+EC構築（機械装置・システム等費／¥4,000,000）</option>
+            <option value="line">②Line構築単体（機械装置・システム等費／¥3,020,000）</option>
+            <option value="spagen">③SPAGEN 炭酸ディスペンサー（機械装置・システム等費／¥750,000）</option>
+            <option value="chirashi">④チラシ・ポスティング（外注費／¥1,045,000）</option>
+            <option value="leaflet">⑤リーフレット・卓上POP（外注費／¥760,000）</option>
+            <option value="meo">⑤GeoConect MEO対策（外注費／¥250,000）</option>
+            <option value="combo">⑥ディスペンサー+MEO+Line（¥4,020,000）</option>
+          </select>
+          <button type="button" class="add-row-btn" onclick="applyExpensePattern()" style="white-space:nowrap;">＋ この内容を追加</button>
+        </div>
+        <div style="font-size:11px;color:var(--muted);margin-top:6px;">選んだ商材の経費が下の表に追加されます。表にない顧客要望の経費は「＋ 経費を追加」で自由に入力できます。</div>
+      </div>
+
       <div style="overflow-x:auto;">
         <table class="expense-table">
           <thead>
@@ -818,6 +837,62 @@ function addExpenseRow() {
     <td><button class="del-row" onclick="delRow(this)" title="削除">×</button></td>`;
   tbody.appendChild(tr);
 }
+
+// ===== 商材パターン（北海道申請時条件表より。社内原価は含めない） =====
+const EXPENSE_PATTERNS = {
+  line_ec:  { label:'①Line+EC構築', rows:[
+    {cat:'機械装置・システム等費', name:'LINEシステム開発費（LINE＋EC一式）', price:4000000, qty:1} ] },
+  line:     { label:'②Line構築単体', rows:[
+    {cat:'機械装置・システム等費', name:'LINEシステム開発費（LINE構築単体）', price:3020000, qty:1} ] },
+  spagen:   { label:'③SPAGEN 炭酸ディスペンサー', rows:[
+    {cat:'機械装置・システム等費', name:'炭酸ディスペンサー', price:750000, qty:1} ] },
+  chirashi: { label:'④チラシ・ポスティング', rows:[
+    {cat:'外注費', name:'チラシデザイン費 両面（A4・両面フルカラー）', price:200000, qty:2},
+    {cat:'外注費', name:'チラシ印刷', price:18, qty:15000},
+    {cat:'外注費', name:'ポスティング', price:25, qty:15000} ] },
+  leaflet:  { label:'⑤リーフレット・卓上POP', rows:[
+    {cat:'外注費', name:'リーフレットデザイン（A4・片面フルカラー）', price:300000, qty:1},
+    {cat:'外注費', name:'チラシ印刷', price:20, qty:5000},
+    {cat:'外注費', name:'卓上POPデザイン', price:300000, qty:1},
+    {cat:'外注費', name:'卓上POP印刷', price:3000, qty:20} ] },
+  meo:      { label:'⑤GeoConect MEO対策', rows:[
+    {cat:'外注費', name:'MEO対策（GeoConnect）', price:250000, qty:1} ] },
+  combo:    { label:'⑥ディスペンサー+MEO+Line', rows:[
+    {cat:'機械装置・システム等費', name:'炭酸ディスペンサー', price:750000, qty:1},
+    {cat:'外注費', name:'MEO対策（GeoConnect）', price:250000, qty:1},
+    {cat:'機械装置・システム等費', name:'LINEシステム開発費（LINE構築単体）', price:3020000, qty:1} ] },
+};
+
+function applyExpensePattern() {
+  const sel = document.getElementById('bundle-select');
+  const key = sel ? sel.value : '';
+  if (!key) { alert('パターンを選択してください。'); return; }
+  const p = EXPENSE_PATTERNS[key];
+  if (!p) return;
+  const tbody = document.getElementById('expense-body');
+  // 先頭が空行1つだけなら置き換える
+  const rows = tbody.querySelectorAll('tr');
+  if (rows.length === 1) {
+    const nm = rows[0].querySelector('.exp-name')?.value.trim();
+    const pr = rows[0].querySelector('.exp-price')?.value.trim();
+    if (!nm && !pr) { tbody.innerHTML = ''; expRowCount = 0; }
+  }
+  p.rows.forEach(row => {
+    addExpenseRow();
+    const tr = tbody.querySelector('tr:last-child');
+    tr.querySelector('.exp-cat').value   = row.cat;
+    tr.querySelector('.exp-name').value  = row.name;
+    tr.querySelector('.exp-price').value = row.price;
+    tr.querySelector('.exp-qty').value   = row.qty;
+    calcRow(tr.querySelector('.exp-price'));
+  });
+  // 連番振り直し
+  tbody.querySelectorAll('tr').forEach((tr, i) => { tr.firstElementChild.textContent = i + 1; });
+  calcTotal();
+  if (sel) sel.value = '';
+  if (typeof showToast === 'function') showToast(p.label + ' を一括入力しました');
+}
+
 function delRow(btn) {
   const tbody = document.getElementById('expense-body');
   if (tbody.querySelectorAll('tr').length <= 1) return;
