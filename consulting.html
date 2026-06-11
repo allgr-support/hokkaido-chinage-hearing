@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>コンサルティング申込書｜北海道賃上げ環境整備補助金</title>
+<style>
+  :root{
+    --primary:#1a5276; --primary-light:#2e86c1; --bg:#f5f7fa; --border:#d5d8dc;
+    --muted:#7f8c8d; --danger:#e74c3c; --ok:#1e8449; --ink:#212f3d;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;line-height:1.7;}
+  .wrap{max-width:820px;margin:0 auto;padding:0 14px 60px;}
+  header{background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff;padding:26px 20px;border-radius:0 0 12px 12px;margin-bottom:18px;}
+  header .badge{display:inline-block;background:rgba(255,255,255,.18);border-radius:20px;padding:3px 12px;font-size:12px;margin-bottom:8px;}
+  header h1{margin:0;font-size:19px;line-height:1.5;}
+  header p{margin:8px 0 0;font-size:12px;opacity:.9;}
+  .card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:18px 18px;margin-bottom:16px;}
+  .card h2{font-size:15px;margin:0 0 12px;color:var(--primary);border-left:4px solid var(--primary);padding-left:9px;}
+  .lead{background:#eef4f9;border:1px solid #d6e4f0;border-radius:8px;padding:12px 14px;font-size:13px;color:#34495e;margin-bottom:16px;}
+  .terms h3{font-size:13.5px;margin:16px 0 6px;color:var(--ink);font-weight:700;}
+  .terms ul{margin:0 0 6px;padding-left:0;list-style:none;}
+  .terms li{font-size:12.5px;color:#34495e;padding:5px 0 5px 22px;position:relative;border-bottom:1px dashed #eef0f2;}
+  .terms li::before{content:"☑";position:absolute;left:0;top:4px;color:var(--primary-light);font-size:13px;}
+  .terms .note{font-size:11px;color:var(--muted);}
+  .accept{display:flex;gap:10px;align-items:flex-start;background:#fff7e6;border:1px solid #f1d59a;border-radius:8px;padding:12px 14px;margin-top:6px;}
+  .accept input{width:20px;height:20px;margin-top:2px;flex:none;}
+  .accept label{font-size:13.5px;font-weight:700;color:#7d6608;}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  @media(max-width:560px){.grid{grid-template-columns:1fr;}}
+  .field label{display:block;font-size:12px;font-weight:600;margin-bottom:4px;}
+  .field label .req{color:var(--danger);font-size:11px;margin-left:4px;}
+  .field input{width:100%;border:1px solid var(--border);border-radius:6px;padding:9px 11px;font-size:14px;font-family:inherit;outline:none;}
+  .field input:focus{border-color:var(--primary-light);}
+  .field{margin-bottom:6px;}
+  .sign-area{margin-top:4px;}
+  .sign-pad-wrap{position:relative;border:2px dashed var(--border);border-radius:8px;background:#fff;}
+  #sign-pad{width:100%;height:170px;display:block;border-radius:8px;touch-action:none;}
+  .sign-hint{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#c5ccd2;font-size:14px;pointer-events:none;}
+  .sign-bar{display:flex;justify-content:space-between;align-items:center;margin-top:6px;}
+  .btn{border:none;border-radius:7px;padding:10px 18px;font-size:14px;font-family:inherit;cursor:pointer;font-weight:600;}
+  .btn-clear{background:var(--bg);border:1px solid var(--border);color:var(--ink);font-weight:500;padding:7px 14px;font-size:12px;}
+  .btn-main{background:var(--primary);color:#fff;width:100%;padding:15px;font-size:16px;margin-top:8px;}
+  .btn-main:disabled{opacity:.5;cursor:not-allowed;}
+  .err{color:var(--danger);font-size:12.5px;margin-top:8px;display:none;}
+  .small{font-size:11px;color:var(--muted);}
+  /* PDF描画用（画面外） */
+  #pdf-doc{position:absolute;left:-9999px;top:0;width:800px;background:#fff;color:#000;padding:40px;font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;}
+  #pdf-doc h1{font-size:18px;text-align:center;margin:0 0 4px;}
+  #pdf-doc .pdf-sub{text-align:center;font-size:12px;color:#555;margin-bottom:16px;}
+  #pdf-doc .pdf-lead{font-size:11.5px;border:1px solid #ccc;padding:10px;border-radius:6px;background:#f7f9fb;margin-bottom:14px;}
+  #pdf-doc h3{font-size:13px;margin:14px 0 4px;border-bottom:1px solid #ddd;padding-bottom:3px;}
+  #pdf-doc ul{margin:0;padding-left:0;list-style:none;}
+  #pdf-doc li{font-size:11px;padding:3px 0 3px 16px;position:relative;}
+  #pdf-doc li::before{content:"☑";position:absolute;left:0;color:#1a5276;}
+  #pdf-doc .pdf-accept{font-size:12.5px;font-weight:700;margin:16px 0 10px;}
+  #pdf-doc table{width:100%;border-collapse:collapse;margin-top:8px;}
+  #pdf-doc td,#pdf-doc th{border:1px solid #999;padding:8px 10px;font-size:12px;vertical-align:top;}
+  #pdf-doc th{background:#eef2f6;width:120px;text-align:left;}
+  #pdf-doc .sign-img{height:60px;}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div class="badge">北海道 賃上げ環境整備補助金2026</div>
+    <h1>取組導入に関する コンサルティング申込書</h1>
+    <p>内容をご確認・ご入力のうえ、ご署名いただき、PDFを作成してください。</p>
+  </header>
+
+  <div class="lead">
+    中小・小規模企業賃上げ環境整備等支援事業費補助金（北海道賃上げ環境整備補助金2026）は、道内中小企業者等が従業員の賃上げに向けた環境整備を行うため、設備導入・販路開拓・業務効率化等の取組に要する経費の一部を支援する補助金です。申請者は公募要領・申請の手引きに沿って、交付申請、交付決定後の発注・契約、事業実施、支払い、実績報告等を行う必要があります。
+  </div>
+
+  <div class="card terms">
+    <h2>ご確認事項</h2>
+
+    <h3>１．コンサルティング業務受付時</h3>
+    <ul>
+      <li>当社は、御社（お申込者）のご依頼により、北海道賃上げ環境整備補助金を利用した設備導入、販路開拓、業務効率化その他取組に関するご提案を行います。</li>
+      <li>御社の事業内容、補助対象経費、賃上げ計画、事業実施スケジュール等を確認し、補助金の趣旨に沿った取組内容を整理します。</li>
+      <li>販売店、施工業者、制作会社、その他取引先への見積依頼・仕様確認・価格調整等は当社でサポートし、その後、各取引先より御社にお見積書が提示されます。</li>
+      <li>申請に必要な書類、ヒアリング項目、賃金台帳・労働条件確認資料、見積書、カタログ、相見積等については、当社に提出、情報開示頂きます。</li>
+    </ul>
+
+    <h3>２．補助金の申請作業に関して</h3>
+    <ul>
+      <li>申請に必要な情報が揃いましたら、当社による申請書類作成・確認サポートを開始します。補助対象経費、賃上げ要件、発注時期、実績報告期限等の注意事項について必ずご確認ください。</li>
+      <li>申請作業は当社で可能な範囲のサポートを致しますが、御社自身でご対応頂く手続き・確認・押印・提出・電子申請等がございます。採択又は交付決定後は、御社と各取引先との間で「契約締結・発注・納品・検収・お支払」等の手続きが行われます。</li>
+      <li>交付決定前の発注・契約・支払等は、制度上、補助対象外となる可能性があります。事前着手の可否、対象経費の範囲、必要書類については公募要領等で最終確認してください。</li>
+      <li>当社に設備代金・工事代金・制作費等の補助対象経費をお支払いいただく事はございません。各取引先へのお支払いは、御社と各取引先との契約条件に従って行ってください。</li>
+    </ul>
+
+    <h3>３．採択後・交付決定後、及び事業実施後の対応に関して</h3>
+    <ul>
+      <li>採択又は交付決定後は、発注・契約、納品・施工・制作、検収、お支払までの手続きを迅速に行う必要がございます。お支払いや必要書類の取得が遅延した場合、実績報告及び補助金交付までに時間を要する場合があります。</li>
+      <li>納品・施工・制作等は各取引先が対応しますが、御社にご準備頂く情報・写真・設置場所・原稿・確認事項等がございます。依頼があった場合はご協力をお願いいたします。</li>
+      <li>事業完了後は「実績報告」の手続きに進みます。当社でサポートしますが、遅延すると補助金交付も遅くなります。期限が設けられているため迅速なご対応をお願いいたします。</li>
+      <li>賃上げ誓約、賃上げ実施状況、雇用・賃金に関する確認資料等の提出・確認を求められる場合があります。申請内容と異なる場合、補助金返還等の対象となる可能性があります。</li>
+    </ul>
+
+    <h3>４．申請が不採択となった場合に関して</h3>
+    <ul>
+      <li>不採択となった場合でも、次期申請回が残っていれば再申請が可能な場合があります。再申請は御社のご承諾のもと進行し、取組内容・経費・取引先・申請書類を見直す場合がございます。※再申請は必須ではありません。</li>
+    </ul>
+
+    <h3>５．重要事項に関して</h3>
+    <ul>
+      <li><b>キャンセル費用</b>／申請前（申請完了前）：費用は発生しません。申請中で結果が「採択」又は「交付決定」となった場合：10万円（税抜）。「不採択」の場合：発生しません。採択・交付決定後〜各取引先への発注までの間：10万円（税抜）。発注後：原則キャンセル不可。</li>
+      <li><b>キャッシュバック等の還元</b>／取引先や第三者が本補助金に関連する取引で御社にキャッシュバックや実質的な還元を行う事は不正行為とみなされ、補助金返還を求められる場合があります。「紹介料・コンサル料」等の名目で一般取引を偽装した還元も対象となる可能性があります。補助対象経費の見積に含まれない商品・サービスは本補助金と無関係です。</li>
+      <li><b>その他 返還につながる事項</b>／同一内容物・同一経費への他補助金等の重複受給、目的外利用・未使用・虚偽申請・書類不備・期限内の実績報告未提出・補助対象物の第三者譲渡、賃上げ等の前提条件への未対応や申請内容と実績の相違。</li>
+      <li><b>立入調査</b>／事務局又は関係機関が現地確認を含む立入調査を行うことがあり、正当な理由なく応じない場合、補助金返還の指示が出る場合があります。特別な事情が無い場合は調査にご協力ください。</li>
+    </ul>
+
+    <div class="accept">
+      <input type="checkbox" id="agree" onchange="updateBtn()">
+      <label for="agree">当社（私）は、上記内容をすべて確認し、承諾したうえで申し込みます。</label>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>お申込者情報</h2>
+    <div class="grid">
+      <div class="field"><label>申込日<span class="req">必須</span></label><input type="date" id="f-date"></div>
+      <div class="field"><label>御社名<span class="req">必須</span></label><input type="text" id="f-company" placeholder="例：株式会社北海フーズ"></div>
+      <div class="field"><label>ご連絡先（日中つながる番号）<span class="req">必須</span></label><input type="tel" id="f-tel" placeholder="例：011-000-0000"></div>
+      <div class="field"><label>ご住所<span class="req">必須</span></label><input type="text" id="f-addr" placeholder="例：北海道札幌市…"></div>
+      <div class="field" style="grid-column:1/-1;"><label>ご担当者名<span class="req">必須</span></label><input type="text" id="f-name" placeholder="例：山田 太郎"></div>
+    </div>
+
+    <div class="sign-area">
+      <label style="display:block;font-size:12px;font-weight:600;margin:8px 0 4px;">ご署名（指やマウスで記入）<span class="req">必須</span></label>
+      <div class="sign-pad-wrap">
+        <canvas id="sign-pad"></canvas>
+        <div class="sign-hint" id="sign-hint">ここにご署名ください</div>
+      </div>
+      <div class="sign-bar">
+        <span class="small">※ 押印の代わりに、こちらにご署名ください。</span>
+        <button class="btn btn-clear" onclick="clearSign()">書き直す</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>申込受付担当会社</h2>
+    <div class="grid">
+      <div class="field"><label>社名</label><input type="text" id="f-rcompany" value="株式会社ALL"></div>
+      <div class="field"><label>担当者</label><input type="text" id="f-rstaff" placeholder="担当者名"></div>
+      <div class="field" style="grid-column:1/-1;"><label>連絡先</label><input type="text" id="f-rtel" placeholder="電話 / メール"></div>
+    </div>
+    <p class="small">※ 受付担当会社の情報は、送付前にあらかじめ入力しておくこともできます。</p>
+  </div>
+
+  <button class="btn btn-main" id="btn-pdf" onclick="makePdf()" disabled>承諾にチェックしてください</button>
+  <div class="err" id="err"></div>
+  <p class="small" style="text-align:center;margin-top:10px;">「PDFを作成」を押すと、入力内容と署名を記載したPDFが端末にダウンロードされます。</p>
+</div>
+
+<!-- PDF描画用（画面外・捕捉対象） -->
+<div id="pdf-doc"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.7/dist/signature_pad.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+<script>
+// 今日の日付をデフォルト
+(function(){ const d=new Date(); const z=n=>String(n).padStart(2,'0'); document.getElementById('f-date').value=d.getFullYear()+'-'+z(d.getMonth()+1)+'-'+z(d.getDate()); })();
+
+// 署名パッド
+const canvas=document.getElementById('sign-pad');
+const hint=document.getElementById('sign-hint');
+let sigPad;
+function fitCanvas(){
+  const ratio=Math.max(window.devicePixelRatio||1,1);
+  const w=canvas.offsetWidth, h=canvas.offsetHeight;
+  canvas.width=w*ratio; canvas.height=h*ratio;
+  canvas.getContext('2d').scale(ratio,ratio);
+  if(sigPad) sigPad.clear();
+}
+window.addEventListener('load',()=>{
+  sigPad=new SignaturePad(canvas,{penColor:'#10243b',minWidth:1.1,maxWidth:2.6,backgroundColor:'rgba(255,255,255,0)'});
+  fitCanvas();
+  sigPad.addEventListener('beginStroke',()=>{ hint.style.display='none'; });
+});
+let rT; window.addEventListener('resize',()=>{ clearTimeout(rT); rT=setTimeout(fitCanvas,200); });
+function clearSign(){ if(sigPad)sigPad.clear(); hint.style.display=''; }
+
+function updateBtn(){
+  const btn=document.getElementById('btn-pdf');
+  const ok=document.getElementById('agree').checked;
+  btn.disabled=!ok;
+  btn.textContent= ok ? 'PDFを作成・ダウンロード' : '承諾にチェックしてください';
+}
+
+function val(id){ return (document.getElementById(id).value||'').trim(); }
+
+async function makePdf(){
+  const err=document.getElementById('err'); err.style.display='none';
+  if(!document.getElementById('agree').checked){ return fail('承諾にチェックしてください。'); }
+  const date=val('f-date'), company=val('f-company'), tel=val('f-tel'), addr=val('f-addr'), name=val('f-name');
+  if(!date||!company||!tel||!addr||!name){ return fail('お申込者情報の必須項目をすべて入力してください。'); }
+  if(!sigPad||sigPad.isEmpty()){ return fail('ご署名を記入してください。'); }
+
+  const sigData=sigPad.toDataURL('image/png');
+  const btn=document.getElementById('btn-pdf'); btn.disabled=true; const old=btn.textContent; btn.textContent='PDFを作成中…';
+  try{
+    buildPdfDoc({date,company,tel,addr,name,sigData,
+      rcompany:val('f-rcompany'), rstaff:val('f-rstaff'), rtel:val('f-rtel')});
+    const doc=document.getElementById('pdf-doc');
+    const canvasEl=await html2canvas(doc,{scale:2,backgroundColor:'#ffffff',useCORS:true});
+    const { jsPDF }=window.jspdf;
+    const pdf=new jsPDF('p','mm','a4');
+    const pw=pdf.internal.pageSize.getWidth();
+    const ph=pdf.internal.pageSize.getHeight();
+    const imgW=pw;
+    const imgH=canvasEl.height*imgW/canvasEl.width;
+    const img=canvasEl.toDataURL('image/jpeg',0.92);
+    let heightLeft=imgH, position=0;
+    pdf.addImage(img,'JPEG',0,position,imgW,imgH);
+    heightLeft-=ph;
+    while(heightLeft>0){ position-=ph; pdf.addPage(); pdf.addImage(img,'JPEG',0,position,imgW,imgH); heightLeft-=ph; }
+    const safe=company.replace(/[\\\/:*?"<>|]/g,'_');
+    pdf.save('コンサルティング申込書_'+safe+'_'+date+'.pdf');
+  }catch(e){
+    fail('PDF作成に失敗しました：'+(e.message||e));
+  }finally{
+    btn.disabled=false; btn.textContent=old; updateBtn();
+  }
+}
+function fail(m){ const err=document.getElementById('err'); err.textContent=m; err.style.display='block'; window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'}); }
+
+function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function buildPdfDoc(d){
+  const termsHtml=document.querySelector('.terms').cloneNode(true);
+  // 同意チェック部分は除去
+  const acc=termsHtml.querySelector('.accept'); if(acc) acc.remove();
+  const h2=termsHtml.querySelector('h2'); if(h2) h2.remove();
+  document.getElementById('pdf-doc').innerHTML =
+    '<h1>取組導入に関する コンサルティング申込書</h1>'+
+    '<div class="pdf-sub">北海道 賃上げ環境整備補助金2026</div>'+
+    '<div class="pdf-lead">'+document.querySelector('.lead').innerHTML+'</div>'+
+    '<div class="pdf-terms">'+termsHtml.innerHTML+'</div>'+
+    '<div class="pdf-accept">当社（私）は、上記内容をすべて確認し、承諾したうえで申し込みます。</div>'+
+    '<table><tr><th>申込日</th><td>'+esc(d.date)+'</td></tr>'+
+    '<tr><th>御社名</th><td>'+esc(d.company)+'</td></tr>'+
+    '<tr><th>ご連絡先</th><td>'+esc(d.tel)+'</td></tr>'+
+    '<tr><th>ご住所</th><td>'+esc(d.addr)+'</td></tr>'+
+    '<tr><th>ご担当者名</th><td>'+esc(d.name)+'　　<img class="sign-img" src="'+d.sigData+'"></td></tr>'+
+    '</table>'+
+    '<table style="margin-top:10px;"><tr><th>申込受付担当会社</th><td>社名：'+esc(d.rcompany||'')+'　／　担当者：'+esc(d.rstaff||'')+'　／　連絡先：'+esc(d.rtel||'')+'</td></tr></table>';
+}
+</script>
+</body>
+</html>
