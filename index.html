@@ -604,7 +604,7 @@
               <th style="width:140px;">経費区分</th>
               <th>品名・内容</th>
               <th style="width:90px;">単価（税抜）</th>
-              <th style="width:50px;">数量</th>
+              <th style="width:78px;">数量</th>
               <th style="width:100px;">小計（税抜）</th>
               <th style="width:60px;">相見積</th>
               <th style="width:28px;"></th>
@@ -631,6 +631,7 @@
         </table>
       </div>
       <button class="add-row-btn" onclick="addExpenseRow()">＋ 経費を追加</button>
+      <button class="add-row-btn" onclick="exportEstimateExcel()" style="margin-left:8px;">&#128196; 見積書をExcel出力</button>
 
       <div id="expense-total-area" style="margin-top:14px; display:none;">
         <div class="expense-summary">
@@ -794,6 +795,67 @@ function calcRow(input) {
   row.querySelector('.exp-subtotal').textContent = subtotal > 0 ? subtotal.toLocaleString() + '円' : '─';
   calcTotal();
 }
+// ===== 見積書 Excel 出力 =====
+function exportEstimateExcel() {
+  if (typeof XLSX === 'undefined') { alert('Excelライブラリの読み込みに失敗しました。通信環境をご確認のうえ再読み込みしてください。'); return; }
+  const items = [];
+  let subtotal = 0;
+  document.querySelectorAll('#expense-body tr').forEach(tr => {
+    const cat = tr.querySelector('.exp-cat')?.value || '';
+    const name = tr.querySelector('.exp-name')?.value.trim() || '';
+    const price = Number(tr.querySelector('.exp-price')?.value) || 0;
+    const qty = Number(tr.querySelector('.exp-qty')?.value) || 0;
+    if (!name && !price) return;
+    const amt = price * qty;
+    subtotal += amt;
+    items.push([cat, name, qty, price, amt]);
+  });
+  if (!items.length) { alert('経費が入力されていません。先に経費を入力してください。'); return; }
+
+  const company = (document.getElementById('company-name')?.value || '').trim();
+  const tax = Math.round(subtotal * 0.1);
+  const total = subtotal + tax;
+  const dt = new Date();
+  const ymd = dt.getFullYear() + '年' + (dt.getMonth() + 1) + '月' + dt.getDate() + '日';
+
+  const aoa = [
+    ['御 見 積 書'],
+    [],
+    [(company || '（御社名）') + '　御中', '', '', '', '発行日', ymd],
+    ['', '', '', '', '発行者', '株式会社ALL'],
+    ['下記の通り御見積申し上げます。'],
+    ['', '', '', '', '合計金額（税込）', total],
+    [],
+    ['No', '経費区分', '品名・内容', '数量', '単価（税抜）', '金額（税抜）'],
+  ];
+  items.forEach((r, i) => aoa.push([i + 1, r[0], r[1], r[2], r[3], r[4]]));
+  aoa.push([]);
+  aoa.push(['', '', '', '', '小計（税抜）', subtotal]);
+  aoa.push(['', '', '', '', '消費税（10%）', tax]);
+  aoa.push(['', '', '', '', '合計（税込）', total]);
+
+  const ws = XLSX.utils.aoa_to_sheet(aoa);
+  ws['!cols'] = [{ wch: 5 }, { wch: 20 }, { wch: 42 }, { wch: 8 }, { wch: 14 }, { wch: 15 }];
+  ws['!merges'] = [{ s: { r: 0, c: 0 }, e: { r: 0, c: 5 } }];
+  // 金額系セルに桁区切り書式
+  const yenCells = [];
+  const headerRow = 7; // 0-indexed: 明細ヘッダ行
+  for (let i = 0; i < items.length; i++) {
+    yenCells.push(XLSX.utils.encode_cell({ r: headerRow + 1 + i, c: 4 }));
+    yenCells.push(XLSX.utils.encode_cell({ r: headerRow + 1 + i, c: 5 }));
+  }
+  const sumStart = headerRow + 1 + items.length + 1;
+  ['F6'].forEach(c => yenCells.push(c));
+  for (let i = 0; i < 3; i++) yenCells.push(XLSX.utils.encode_cell({ r: sumStart + i, c: 5 }));
+  yenCells.forEach(addr => { if (ws[addr] && typeof ws[addr].v === 'number') ws[addr].z = '#,##0'; });
+
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, '見積書');
+  const safe = (company || '見積書').replace(/[\\\/:*?"<>|]/g, '_');
+  const z = n => ('0' + n).slice(-2);
+  XLSX.writeFile(wb, '見積書_' + safe + '_' + dt.getFullYear() + z(dt.getMonth() + 1) + z(dt.getDate()) + '.xlsx');
+}
+
 function calcTotal() {
   let total = 0;
   document.querySelectorAll('#expense-body tr').forEach(row => {
@@ -1968,5 +2030,7 @@ window.addEventListener('load', initAuth);
 
 <div id="toast"></div>
 
+<style>.expense-table .exp-qty,.expense-table .exp-price{width:100%;min-width:56px;box-sizing:border-box;}</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </body>
 </html>
