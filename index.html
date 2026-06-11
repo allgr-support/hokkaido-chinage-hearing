@@ -795,29 +795,18 @@ function calcRow(input) {
   row.querySelector('.exp-subtotal').textContent = subtotal > 0 ? subtotal.toLocaleString() + '円' : '─';
   calcTotal();
 }
-// ===== 見積書 Excel 出力 =====
-function exportEstimateExcel() {
-  if (typeof XLSX === 'undefined') { alert('Excelライブラリの読み込みに失敗しました。通信環境をご確認のうえ再読み込みしてください。'); return; }
-  const items = [];
-  let subtotal = 0;
-  document.querySelectorAll('#expense-body tr').forEach(tr => {
-    const cat = tr.querySelector('.exp-cat')?.value || '';
-    const name = tr.querySelector('.exp-name')?.value.trim() || '';
-    const price = Number(tr.querySelector('.exp-price')?.value) || 0;
-    const qty = Number(tr.querySelector('.exp-qty')?.value) || 0;
-    if (!name && !price) return;
-    const amt = price * qty;
-    subtotal += amt;
-    items.push([cat, name, qty, price, amt]);
-  });
-  if (!items.length) { alert('経費が入力されていません。先に経費を入力してください。'); return; }
-
-  const company = (document.getElementById('company-name')?.value || '').trim();
+// ===== 見積書 Excel 出力（2シート：御見積書／参考見積） =====
+function estimateRoundNice(p) {
+  if (p >= 10000) return Math.round(p / 1000) * 1000;
+  if (p >= 1000)  return Math.round(p / 100) * 100;
+  if (p >= 100)   return Math.round(p / 10) * 10;
+  return Math.round(p);
+}
+function buildEstimateSheet(items, company, ymd) {
+  // items: [[cat, name, qty, price, amt], ...]
+  const subtotal = items.reduce((s, r) => s + r[4], 0);
   const tax = Math.round(subtotal * 0.1);
   const total = subtotal + tax;
-  const dt = new Date();
-  const ymd = dt.getFullYear() + '年' + (dt.getMonth() + 1) + '月' + dt.getDate() + '日';
-
   const aoa = [
     ['御 見 積 書'],
     [],
@@ -837,20 +826,49 @@ function exportEstimateExcel() {
   const ws = XLSX.utils.aoa_to_sheet(aoa);
   ws['!cols'] = [{ wch: 5 }, { wch: 20 }, { wch: 42 }, { wch: 8 }, { wch: 14 }, { wch: 15 }];
   ws['!merges'] = [{ s: { r: 0, c: 0 }, e: { r: 0, c: 5 } }];
-  // 金額系セルに桁区切り書式
+  const headerRow = 7;
   const yenCells = [];
-  const headerRow = 7; // 0-indexed: 明細ヘッダ行
   for (let i = 0; i < items.length; i++) {
     yenCells.push(XLSX.utils.encode_cell({ r: headerRow + 1 + i, c: 4 }));
     yenCells.push(XLSX.utils.encode_cell({ r: headerRow + 1 + i, c: 5 }));
   }
   const sumStart = headerRow + 1 + items.length + 1;
-  ['F6'].forEach(c => yenCells.push(c));
+  yenCells.push('F6');
   for (let i = 0; i < 3; i++) yenCells.push(XLSX.utils.encode_cell({ r: sumStart + i, c: 5 }));
-  yenCells.forEach(addr => { if (ws[addr] && typeof ws[addr].v === 'number') ws[addr].z = '#,##0'; });
+  yenCells.forEach(a => { if (ws[a] && typeof ws[a].v === 'number') ws[a].z = '#,##0'; });
+  return ws;
+}
+function exportEstimateExcel() {
+  if (typeof XLSX === 'undefined') { alert('Excelライブラリの読み込みに失敗しました。通信環境をご確認のうえ再読み込みしてください。'); return; }
+  const base = [];
+  document.querySelectorAll('#expense-body tr').forEach(tr => {
+    const cat = tr.querySelector('.exp-cat')?.value || '';
+    const name = tr.querySelector('.exp-name')?.value.trim() || '';
+    const price = Number(tr.querySelector('.exp-price')?.value) || 0;
+    const qty = Number(tr.querySelector('.exp-qty')?.value) || 0;
+    if (!name && !price) return;
+    base.push([cat, name, qty, price, price * qty]);
+  });
+  if (!base.length) { alert('経費が入力されていません。先に経費を入力してください。'); return; }
+
+  const company = (document.getElementById('company-name')?.value || '').trim();
+  const dt = new Date();
+  const ymd = dt.getFullYear() + '年' + (dt.getMonth() + 1) + '月' + dt.getDate() + '日';
+
+  // シート1：本見積（現在の入力値）
+  const ws1 = buildEstimateSheet(base, company, ymd);
+
+  // シート2：参考見積（各単価をランダムで約1.2倍にし、自然な金額へ丸め）
+  const ref = base.map(r => {
+    const factor = 1.15 + Math.random() * 0.13;            // 約1.15〜1.28
+    const newPrice = estimateRoundNice(r[3] * factor);
+    return [r[0], r[1], r[2], newPrice, newPrice * r[2]];
+  });
+  const ws2 = buildEstimateSheet(ref, company, ymd);
 
   const wb = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(wb, ws, '見積書');
+  XLSX.utils.book_append_sheet(wb, ws1, '御見積書');
+  XLSX.utils.book_append_sheet(wb, ws2, '参考見積');
   const safe = (company || '見積書').replace(/[\\\/:*?"<>|]/g, '_');
   const z = n => ('0' + n).slice(-2);
   XLSX.writeFile(wb, '見積書_' + safe + '_' + dt.getFullYear() + z(dt.getMonth() + 1) + z(dt.getDate()) + '.xlsx');
