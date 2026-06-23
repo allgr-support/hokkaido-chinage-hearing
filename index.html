@@ -1896,7 +1896,7 @@ async function generateDraftAI() {
   area.style.display = 'block';
   document.getElementById('draft-placeholder').style.display = 'none';
   document.getElementById('draft-actions').style.display = 'none';
-  area.innerHTML = '<div class="alert" style="padding:24px;text-align:center;color:var(--muted);border:1px dashed var(--border);border-radius:8px;">✦ AIが申請書ドラフトを作成しています…<br><span style="font-size:12px;">（通常30〜60秒ほどかかります。画面を閉じずにお待ちください）</span></div>';
+  area.innerHTML = '<div class="alert" style="padding:24px;text-align:center;color:var(--muted);border:1px dashed var(--border);border-radius:8px;">✦ AIが申請書ドラフトを作成しています…<br><span style="font-size:12px;">（ボリュームのある内容のため通常1〜2分ほどかかります。画面を閉じずにお待ちください）</span></div>';
   const aiBtn = document.getElementById('btn-gen-ai');
   if (aiBtn) { aiBtn.disabled = true; }
   try {
