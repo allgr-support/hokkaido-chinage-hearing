@@ -277,6 +277,16 @@
       </div>
       <div class="two-col">
         <div class="field-group">
+          <label>代表者名（フリガナ）</label>
+          <input type="text" id="rep-name-kana" placeholder="例：ヤマダ タロウ">
+        </div>
+        <div class="field-group">
+          <label>代表者 生年月日</label>
+          <input type="date" id="rep-birth">
+        </div>
+      </div>
+      <div class="two-col">
+        <div class="field-group">
           <label>郵便番号</label>
           <input type="text" id="postal" placeholder="例：060-0001">
         </div>
@@ -313,9 +323,19 @@
         </div>
       </div>
       <hr class="divider">
+      <div class="two-col">
+        <div class="field-group">
+          <label>担当者役職名</label>
+          <input type="text" id="staff-title" placeholder="例：店長／部長">
+        </div>
+        <div class="field-group">
+          <label>担当者名<span class="hint">（代表者と異なる場合）</span></label>
+          <input type="text" id="staff-contact" placeholder="例：鈴木 花子">
+        </div>
+      </div>
       <div class="field-group">
-        <label>担当者名<span class="hint">（代表者と異なる場合）</span></label>
-        <input type="text" id="staff-contact" placeholder="例：鈴木 花子">
+        <label>担当者名（フリガナ）</label>
+        <input type="text" id="staff-kana" placeholder="例：スズキ ハナコ">
       </div>
       <div class="field-group">
         <label>担当者メールアドレス</label>
@@ -351,9 +371,13 @@
           <input type="number" id="officer-count" placeholder="例：2">
         </div>
         <div class="field-group">
-          <label>常時使用する従業員数<span class="req">必須</span><span class="hint">人</span></label>
-          <input type="number" id="emp-count" placeholder="例：8" oninput="checkEligibility()">
+          <label>従業員数（総数）<span class="hint">人</span></label>
+          <input type="number" id="emp-total" placeholder="例：12">
         </div>
+      </div>
+      <div class="field-group">
+        <label>上記の内、常時使用する従業員数<span class="req">必須</span><span class="hint">人</span></label>
+        <input type="number" id="emp-count" placeholder="例：8" oninput="checkEligibility()">
       </div>
       <div id="eligibility-result" class="calc-result"></div>
     </div>
