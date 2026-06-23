@@ -1896,7 +1896,21 @@ async function generateDraftAI() {
   area.style.display = 'block';
   document.getElementById('draft-placeholder').style.display = 'none';
   document.getElementById('draft-actions').style.display = 'none';
-  area.innerHTML = '<div class="alert" style="padding:24px;text-align:center;color:var(--muted);border:1px dashed var(--border);border-radius:8px;">✦ AIが申請書ドラフトを作成しています…<br><span style="font-size:12px;">（ボリュームのある内容のため通常1〜2分ほどかかります。画面を閉じずにお待ちください）</span></div>';
+  area.innerHTML =
+    '<div class="alert" style="padding:24px;text-align:center;color:var(--muted);border:1px dashed var(--border);border-radius:8px;">' +
+    '<div style="font-weight:600;margin-bottom:12px;color:#2c3e50;">✦ AIが申請書ドラフトを作成しています…</div>' +
+    '<div style="background:#e6ebf0;border-radius:8px;height:14px;overflow:hidden;max-width:420px;margin:0 auto;"><div id="gen-bar" style="height:100%;width:0%;background:linear-gradient(90deg,var(--primary-light),var(--primary));transition:width .4s ease;"></div></div>' +
+    '<div id="gen-pct" style="font-size:15px;font-weight:700;color:var(--primary);margin-top:8px;">0%</div>' +
+    '<div style="font-size:11px;margin-top:6px;">ボリュームのある内容のため通常1〜2分ほどかかります。画面を閉じずにお待ちください。</div>' +
+    '</div>';
+  const startT = Date.now();
+  const genTimer = setInterval(function () {
+    const t = (Date.now() - startT) / 1000;
+    const pct = Math.min(95, Math.round(99 * (1 - Math.exp(-t / 30))));
+    const bar = document.getElementById('gen-bar'), pe = document.getElementById('gen-pct');
+    if (bar) bar.style.width = pct + '%';
+    if (pe) pe.textContent = pct + '%';
+  }, 400);
   const aiBtn = document.getElementById('btn-gen-ai');
   if (aiBtn) { aiBtn.disabled = true; }
   try {
@@ -1913,6 +1927,7 @@ async function generateDraftAI() {
       draftEsc(e.message || String(e)) +
       '<br><br>時間をおいて再度お試しください。繰り返し失敗する場合は管理者にお問い合わせください。</div>';
   } finally {
+    clearInterval(genTimer);
     if (aiBtn) { aiBtn.disabled = false; }
   }
 }
