@@ -287,8 +287,9 @@
       </div>
       <div class="two-col">
         <div class="field-group">
-          <label>郵便番号</label>
-          <input type="text" id="postal" placeholder="例：060-0001">
+          <label>郵便番号<span class="hint">（7桁入力で住所を自動入力）</span></label>
+          <input type="text" id="postal" placeholder="例：060-0001" oninput="lookupPostal()">
+          <div id="postal-status" style="font-size:11px;color:var(--muted);margin-top:3px;"></div>
         </div>
         <div class="field-group">
           <label>所在地（市町村以降）<span class="req">必須</span></label>
@@ -316,6 +317,7 @@
         <div class="field-group">
           <label>法人番号<span class="hint">（法人のみ・13桁）</span></label>
           <input type="text" id="corp-num" placeholder="例：1234567890123">
+          <a href="https://www.houjin-bangou.nta.go.jp/" target="_blank" rel="noopener" style="font-size:11px;display:inline-block;margin-top:3px;">&#128270; 法人番号公表サイトで調べる ↗</a>
         </div>
         <div class="field-group">
           <label>設立年月日</label>
@@ -348,7 +350,7 @@
     <div class="section-header"><h2>申請書①企業概要 ─ 事業規模・業種</h2></div>
     <div class="section-body">
       <div class="field-group">
-        <label>業種<span class="req">必須</span></label>
+        <label>業種<span class="req">必須</span> <a href="https://www.soumu.go.jp/toukei_toukatsu/index/seido/sangyo/index.htm" target="_blank" rel="noopener" style="font-size:11px;font-weight:400;">日本標準産業分類で確認 ↗</a></label>
         <div class="radio-group" id="industry-radios">
           <label><input type="radio" name="industry" value="製造業・建設業・運輸業・その他" onchange="checkEligibility()"> 製造業・建設業・運輸業・その他</label>
           <label><input type="radio" name="industry" value="卸売業" onchange="checkEligibility()"> 卸売業</label>
@@ -819,6 +821,36 @@ function calcRow(input) {
   row.querySelector('.exp-subtotal').textContent = subtotal > 0 ? subtotal.toLocaleString() + '円' : '─';
   calcTotal();
 }
+// ===== 郵便番号 → 住所 自動入力（zipcloud / JSONP） =====
+function lookupPostal() {
+  const el = document.getElementById('postal');
+  const z = (el ? el.value : '').replace(/[^0-9]/g, '');
+  const st = document.getElementById('postal-status');
+  if (z.length !== 7) { if (st) st.textContent = ''; return; }
+  if (st) st.textContent = '住所を検索中…';
+  const cbName = '__zipcb';
+  window[cbName] = function (res) {
+    try {
+      if (res && res.status === 200 && res.results && res.results[0]) {
+        const r = res.results[0];
+        const addr = document.getElementById('address');
+        if (addr && !addr.value.trim()) addr.value = (r.address2 || '') + (r.address3 || '');
+        if (st) st.textContent = '✓ ' + (r.address1 || '') + (r.address2 || '') + (r.address3 || '');
+      } else {
+        if (st) st.textContent = '該当する住所が見つかりませんでした';
+      }
+    } catch (e) {}
+    const s0 = document.getElementById('zip-jsonp'); if (s0) s0.remove();
+    try { delete window[cbName]; } catch (e) { window[cbName] = undefined; }
+  };
+  const old = document.getElementById('zip-jsonp'); if (old) old.remove();
+  const s = document.createElement('script');
+  s.id = 'zip-jsonp';
+  s.src = 'https://zipcloud.ibsnet.co.jp/api/search?zipcode=' + z + '&callback=' + cbName;
+  s.onerror = function () { if (st) st.textContent = '住所検索に失敗しました（手入力してください）'; };
+  document.body.appendChild(s);
+}
+
 // ===== 見積書 Excel 出力（2シート：御見積書／参考見積） =====
 function estimateRoundNice(p) {
   if (p >= 10000) return Math.round(p / 1000) * 1000;
