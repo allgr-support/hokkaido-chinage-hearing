@@ -1919,26 +1919,120 @@ let aiDraftText = '';
 function draftEsc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>'); }
 
 // 保存済み/生成済みのドラフトを画面に反映（空なら未生成状態に戻す）
+// AIドラフトから【見出し】セクションの本文を取り出す
+function extractDraftSection(text, header) {
+  const i = text.indexOf(header);
+  if (i < 0) return '';
+  let after = text.slice(i + header.length);
+  const m = after.search(/【[^】]+】/);
+  if (m >= 0) after = after.slice(0, m);
+  return after.replace(/^[\s　:：]*\n?/, '').replace(/[\s　]*-{3,}[\s　]*$/, '').trim();
+}
+// 値をクリップボードへコピー（ボタンに「コピー済」表示）
+function copyTenki(id, btn) {
+  const t = (window.__tenki && window.__tenki[id]) || '';
+  const done = () => { if (btn) { const o = btn.textContent; btn.textContent = '✓ コピー済'; setTimeout(() => { btn.textContent = o; }, 1200); } };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(t).then(done, () => fbCopy(t, done));
+  } else { fbCopy(t, done); }
+}
+function fbCopy(t, cb) {
+  const ta = document.createElement('textarea');
+  ta.value = t; ta.style.position = 'fixed'; ta.style.left = '-9999px';
+  document.body.appendChild(ta); ta.focus(); ta.select();
+  try { document.execCommand('copy'); } catch (e) {}
+  document.body.removeChild(ta); if (cb) cb();
+}
+
+// 交付申請フォームの並びで「転記ビュー」を描画（保存済み/生成済みドラフトを反映）
 function renderAiDraft(text) {
   aiDraftText = text || '';
   const area = document.getElementById('draft-area');
   const ph   = document.getElementById('draft-placeholder');
   const ac   = document.getElementById('draft-actions');
   if (!area) return;
-  if (aiDraftText) {
-    area.style.display = 'block';
-    area.innerHTML =
-      '<div class="alert alert-success" style="margin-bottom:16px;">✅ 申請書ドラフト（AI生成）。内容を確認・修正のうえ、申請書に転記してください。</div>' +
-      '<div style="white-space:pre-wrap;line-height:1.9;font-size:14px;background:#fff;border:1px solid var(--border);border-radius:8px;padding:20px;">' +
-      draftEsc(aiDraftText) + '</div>';
-    if (ph) ph.style.display = 'none';
-    if (ac) ac.style.display = 'block';
-  } else {
-    area.innerHTML = '';
-    area.style.display = 'none';
-    if (ph) ph.style.display = '';
-    if (ac) ac.style.display = 'none';
+  if (!aiDraftText) {
+    area.innerHTML = ''; area.style.display = 'none';
+    if (ph) ph.style.display = ''; if (ac) ac.style.display = 'none';
+    return;
   }
+  const d = collectFormData();
+  const sec = (h) => extractDraftSection(aiDraftText, h);
+  const jigyoName = sec('【事業名称】') || d['project-name'] || '';
+  const kadai     = sec('【直面している課題】');
+  const torikumi  = sec('【本業務による取組と効果】');
+  const sched     = sec('【事業の開始から完了までのスケジュール】');
+
+  window.__tenki = { '__all': aiDraftText };
+  let k = 0;
+  const row = (label, val, opts) => {
+    opts = opts || {};
+    val = (val == null ? '' : String(val));
+    const copyVal = opts.copyVal != null ? String(opts.copyVal) : val.trim();
+    const id = 't' + (k++); window.__tenki[id] = copyVal;
+    const has = !!val.trim();
+    const valHtml = has ? draftEsc(val) : '<span style="color:var(--muted);">（未入力）</span>';
+    const btn = '<button onclick="copyTenki(\'' + id + '\',this)" class="tenki-copy"' + (copyVal.trim() ? '' : ' disabled') + '>コピー</button>';
+    if (opts.big) {
+      return '<div class="tenki-row tenki-big"><div class="tenki-label">' + label + ' ' + btn + '</div><div class="tenki-val-big">' + valHtml + '</div></div>';
+    }
+    return '<div class="tenki-row"><div class="tenki-label">' + label + '</div><div class="tenki-val">' + valHtml + '</div>' + btn + '</div>';
+  };
+
+  const capYen = d['capital'] ? Number(d['capital']) * 10000 : '';
+
+  let html = '';
+  html += '<div class="alert alert-success" style="margin-bottom:14px;">✅ 申請書ドラフト（交付申請フォームへの転記用）。各項目の「コピー」を押して、交付申請フォームの同じ欄に貼り付けてください。'
+        + '<button onclick="copyTenki(\'__all\',this)" class="tenki-copy" style="margin-left:8px;">全文をコピー</button></div>';
+
+  html += '<h3 class="tenki-h">企業概要</h3>';
+  html += row('事業形態', d['_r_corp-type']);
+  html += row('法人名又は屋号', d['company-name']);
+  html += row('法人名又は屋号（フリガナ）', d['company-kana']);
+  html += row('代表者役職名', d['rep-title']);
+  html += row('代表者名（姓 名）', d['rep-name']);
+  html += row('代表者名（フリガナ）', d['rep-name-kana']);
+  html += row('代表者 生年月日', d['rep-birth']);
+  html += row('郵便番号', d['postal']);
+  html += row('所在地', d['address']);
+  html += row('担当者役職名', d['staff-title']);
+  html += row('担当者氏名', d['staff-contact']);
+  html += row('担当者氏名（フリガナ）', d['staff-kana']);
+  html += row('連絡先電話番号（優先1）', d['tel1']);
+  html += row('連絡先電話番号（優先2）', d['tel2']);
+  html += row('資本金等（円）', d['capital'] ? (capYen.toLocaleString() + '円　※ヒアリング入力 ' + d['capital'] + '万円') : '', { copyVal: capYen || '' });
+  html += row('常勤役員・専従者数', d['officer-count']);
+  html += row('従業員数', d['emp-total']);
+  html += row('上記の内、常時使用する従業員数', d['emp-count']);
+  html += row('設立年月日', d['founded-date']);
+  html += row('業種', d['biz-detail'] || d['_r_industry']);
+
+  html += '<h3 class="tenki-h">申請区分</h3>';
+  html += row('申請区分', d['_r_app-frame']);
+
+  html += '<h3 class="tenki-h">事業内容</h3>';
+  html += row('事業名称', jigyoName);
+  html += row('事業期間', (d['start-date'] || '') + (d['end-date'] ? '　〜　' + d['end-date'] : ''));
+  html += row('直面している課題', kadai, { big: true });
+  html += row('本業務による取組と効果', torikumi, { big: true });
+  html += row('事業スケジュール（項目①〜④）', sched, { big: true });
+
+  html += '<h3 class="tenki-h">経費明細</h3>';
+  const exp = Array.isArray(d._expenseRows) ? d._expenseRows : [];
+  let any = false;
+  exp.forEach((e, i) => {
+    if (!e) return;
+    const nm = (e.name || '').trim();
+    if (!nm && !e.price) return;
+    any = true;
+    html += row('経費' + (i + 1), '【' + (e.cat || '区分なし') + '】' + nm + '　単価:' + (e.price || '-') + '　数量:' + (e.qty || '1'));
+  });
+  if (!any) html += '<div class="tenki-row"><div class="tenki-val"><span style="color:var(--muted);">（経費未入力）</span></div></div>';
+
+  area.style.display = 'block';
+  area.innerHTML = html;
+  if (ph) ph.style.display = 'none';
+  if (ac) ac.style.display = 'block';
 }
 
 async function generateDraftAI() {
@@ -2119,7 +2213,17 @@ window.addEventListener('load', initAuth);
 
 <div id="toast"></div>
 
-<style>.expense-table .exp-qty,.expense-table .exp-price{width:100%;min-width:56px;box-sizing:border-box;}</style>
+<style>.expense-table .exp-qty,.expense-table .exp-price{width:100%;min-width:56px;box-sizing:border-box;}
+.tenki-h{font-size:13px;color:var(--primary);border-bottom:2px solid var(--primary);padding-bottom:3px;margin:18px 0 8px;font-weight:700;}
+.tenki-row{display:flex;align-items:flex-start;gap:10px;padding:7px 4px;border-bottom:1px solid #eef0f2;}
+.tenki-label{flex:0 0 210px;font-size:12.5px;font-weight:600;color:#34495e;}
+.tenki-val{flex:1;font-size:13px;white-space:pre-wrap;word-break:break-word;min-width:0;}
+.tenki-copy{flex:none;background:var(--primary);color:#fff;border:none;border-radius:5px;padding:4px 12px;font-size:11px;cursor:pointer;font-family:inherit;white-space:nowrap;}
+.tenki-copy:disabled{background:#bdc3c7;cursor:default;}
+.tenki-big{flex-direction:column;}
+.tenki-big .tenki-label{flex:none;display:flex;align-items:center;gap:8px;width:100%;}
+.tenki-val-big{width:100%;background:#fff;border:1px solid var(--border);border-radius:6px;padding:12px;font-size:13px;line-height:1.8;max-height:340px;overflow:auto;}
+@media(max-width:560px){.tenki-row{flex-wrap:wrap;}.tenki-label{flex-basis:100%;}}</style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </body>
 </html>
